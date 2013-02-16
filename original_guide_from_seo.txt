@@ -1,0 +1,221 @@
+notes from the original gem duck_seo
+
+outline
+- config
+  - attributes title, keywords, etc.
+  - acts_as_sitemap, sitemap_handler, etc
+- handlers / sitemap object
+  - first model
+  - block
+  - instance variable
+  - model attribute  sitemap_handler :index, model: Book
+
+Path to values
+Default values and attributes
+Setting values and attributes directly on a model or controller
+Setting values directly on a named route
+Defining named route filters
+
+Meta tags and HTML head section
+
+### Route Filters
+Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the route (i.e. root_url).
+For the most part, named routes represent controllers and models.  It is doubtful that you would want to include any URL in a sitemap that performs an HTTP POST,
+PUT, or DELETE operation.  Therefore, the default named route filters exclude all routes and have a verb of POST, PUT, or DELETE.  Also excluded are all
+named routes that have an action name of: :new, :create, :edit, :update, or :destroy.  Basically, this leaves all routes that have a HTTP verb of GET.  For routes
+that represent resources this would include the index and show actions.  These default setting should cover just about general needs for generating a sitemap.
+However, you can reset all of the filters to empty and include everything or exclude only what you need.  Also, named route filters are local to a sitemap block.
+Meaning, you can define default filters at the top of config/routes.rb and define addtional filters within as many sitemap blocks as you wish.  When you define
+exclude filters within a block, the current state of the exclude filters outside of the block is copied and used within the block.
+
+See it in action in app: filters/app01
+{include:file:../duck_map_demo/filters/app01/config/routes.rb}
+
+See it in action in app: filters/app02
+{include:file:../duck_map_demo/filters/app02/config/routes.rb}
+
+See it in action in app: filters/app03
+{include:file:../duck_map_demo/filters/app03/config/routes.rb}
+
+<span class="note">**Note:** Filters are applied to an entire block AFTER the block executes.  Filters ARE NOT applied DURING the execution of a block.  Also, keep
+in mind that you can apply a filter local to block and still have that content included in the default sitemap by simply wrapping the desired routes within
+a block that points to the default sitemap.
+</span>
+<span class="note">**Note:** If you use a sitemap block without passing a name the default name :sitemap will be used.  This means that every route that you
+would like included in the default sitemap MUST BE included in a sitemap block.</span>
+
+## Path to values
+No matter if a value is needed for a url during generation of a sitemap or as part of an HTTP request such as meta tags.  The values
+should match and originate from the same source.  Meaning, the lastmod value contained in a sitemap should match the lastmod value
+in the meta section of page headers.
+
+The most desired value for lastmod would be a value that is stored in the database as part of a model attributes.  Such as updated_at.
+
+When values for any given URL are requested, there are several stages that are traversed to obtain ALL of the needed values.  All of the values may
+not be available at any given stage, so, the values that are available are used.  Remaining stages will supply missing values until ALL
+of the values have been supplied or the end of the stages has been reached.
+
+The stages are in the following order:
+
+**1. Code** - The main areas would be code inside a sitemap view or code inside a model or controller.
+
+**2. Model** - A model is an SEO object and will supply values from it's attributes as per the Path to attribute values below.
+
+**3. Controller** - A controller is an SEO object and will supply values from it's attributes as per the Path to attribute values below.
+
+**4. Defaults** set during config.
+
+Attribute values (typically models and controllers) requested via an "seo_" method adhere to the following rules:
+
+  - if the value has been set in an SEO object using code, then, that value is used.
+  - if an attribute has been mapped and the mapped attribute actually exists on an object and has a value, then, use that value.
+    - else if an attribute has NOT been mapped, then, determine if attr exists within the object and has a value, if true, use that value.
+    - otherwise, use a default value from seo_<attr name>_default.
+      - if that doesn't exist, use a default from options if that exists
+
+lastmod is a great example of a value that will change the most often, so, I will use lastmod for the following example.
+Let's say we are building a sitemap for a standard Rails resource configured via config/routes.rb using resources :trucks
+
+inside views/sitemap/sitemap.xml.erb you might have the following code to manipulate the lastmod date:
+
+    <%= match_named_routes :trucks do |route, row|
+      lastmod Time.now    # don't know why you would do this, but, it supplies a value
+    end %>
+
+the output would be something like:
+
+    <url> 
+      <loc>http://localhost:3000/trucks</loc> 
+      <lastmod>2011-10-19T01:57:17+00:00</lastmod> 
+      <changefreq>monthly</changefreq> 
+      <priority>0.5</priority> 
+    </url> 
+
+The loc, changefreq, and priority were calculated for you.  However, you supplied the lastmod value, so, it was used.  However, if you would have
+supplied the changefreq and let the sitemap generator fend for itself the path to the lastmod value would be:
+
+Looking at the loc, considering Rails standards we are talking about an index page that typically lists rows from a database.  Sitemap assumes
+that the most recent rows in the database will be displayed at the top of the list, so, the convention is to grab the lastmod first row in the list.
+
+The path to the lastmod value in this example:
+
+  - Check the current value of lastmod.
+    - If set via code, use it and quit.  Otherwise, continue to the next stage.
+
+  - Grab the first row on the view and ask the model for the lastmod value as per the path to attribute values description.
+    - If the value is available via the model, use it, Otherwise, continue to the next stage.
+
+  - Ask the controller for the lastmod value.  The interesting thing about the lastmod for controllers is that the value is not kept in a database.
+    sitemap has a feature that will synchronize the last modified timestamps from a .git repository or the timestamp on disk for each view of a controller
+    and store them in config/locale/sitemap.yml.  Refer to {file:guide.md#sync Sychronizing with .git and local files on disk} for more information.
+
+    If not found, it follows the normal path to attribute values.
+    - If the value is available via the controller, use it, Otherwise, continue to the next stage.
+
+  - If the lastmod value has still not been found, then, it will grab a default value from DuckMap::Config.
+  - If the lastmod value has still not been found, then, it will use nil and the url will be kicked from the list as being invalid due to a missing lastmod value.
+
+Please keep in mind that the preferred method to manipulate the data would be in the model or perhaps the controller (depending on your needs).  The
+intent here is to demonstrate that you can manipulate the views that generate xml content for a sitemap and to show the full path of a value from source to
+inclusion in a URL node.
+
+## Default values and attributes
+Default values do exactly what the name implies: Provide a default value in the absence of a desired value.  An SEO Object is an instance of any class that
+has included the SEO Object module.  SEO Objects have attributes that are considered SEO or sitemap related such as: title, keywords, lastmod, changefreq, etc.
+All of these attributes have accessor methods that are prefixed with "seo_".  All accessor methods return the current value of an instance variable matching the name
+of the accessor method.  For example, seo_title accesses @seo_title.  However, if the instance value has never been set by code, then, a value is calculated based
+on settings defined by acts_as_seo and default values and attributes.  Each SEO Object has the ability to map a custom attribute to an SEO attribute.
+
+Let's say you would like your model Book to map lastmod to published_date instead of the default of updated_at.  The following would do the trick.
+
+    acts_as_seo :lastmod_attr => :published_date
+
+  - Default values give you the power to define values that are used in the absence of a desired value.
+  - Default attributes give you the power to map attributes globally for all SEO Objects.
+  - acts_as_seo gives you the power to override the global default values and attributes.
+
+Default values and attributes can be set in the following areas.
+
+  - config/routes.rb - Here you can set global defaults as well as defaults on individual routes.
+  - config/initializers/duck_map.rb (or any file you choose).
+
+<span class="note">**Note:** Values set in config/routes.rb will override values set in config/initializers</span>
+
+A skeleton file is created for you at: config/initializers/duck_map.rb when you run rails g duck_map:install
+
+See {DuckMap::ConfigHelpers::InstanceMethods} for a list of all possible methods for default values and attributes.
+
+See it in action in app: default_values
+
+## Setting values and attributes directly on a model or controller
+Models and controllers are both SEO Objects.  By default, all accessor methods prefixed with "seo_" are mapped to access attributes of the same name minus
+the "seo_" prefix.  For example, :seo_title is mapped to :title and will attempt to access it's value if the attribute actually exists on the object.  So, if
+you have a Book model with a :title attribute, the title of that book will be used as the title of the HTML page if you have implemented the seo_headers tags.
+
+    # from app: default_values - mapping standard "seo_" attributes to attributes on the model.
+    class Book < ActiveRecord::Base
+      
+      acts_as_seo keywords_attr: :tags, desc_attr: :content, changefreq: :never, priority: "0.2", lastmod_attr: :published_date
+      
+    end
+
+See it in action in app: default_values
+
+## Setting values directly on a named route
+There are two values in particular that you can set on a named route.  :changefreq and :priority.  Both of these values affect the sitemap ONLY.  They do
+not have any effect on meta tags.
+
+    match '/help2' => 'help#index', :as => 'help2', :changefreq => "never", :priority => "0.9"
+
+See it in action in app: default_values
+
+## Meta tags and HTML head section
+There are four tags that can be used in an HTML head section.  seo_title, seo_keywords, seo_desc, and seo_lastmod.  You can simply use seo_headers which calls
+all four methods in the above order.  The values returned by these tags source from the current controller and model instance variables if they exist.  The values
+returned follow the same order of precedence rules as when building a sitemap.  Therefore, values such as lastmod should be the same in the sitemap as well as
+the page header.  Considering a Rails resource, the show action of a controller named books would display the title of the book.
+
+app/layouts/application.html.erb
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <%= seo_headers %>
+      <%= stylesheet_link_tag    "application" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+    </head>
+
+Book model maps some custom attributes.
+{include:file:../duck_map_demo/meta_tags/app/models/book.rb}
+
+output of show action.
+
+    <head>
+      <title>My First Book</title>
+      <meta content="Rails, Ruby on Rails, Ruby, Programming" name="keywords" />
+      <meta content="This is a short description of my application." name="description" />
+      <meta content="Wed, 01 Jan 2014 07:07:00 UTC" name="Last-Modified" />
+      <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+      <script src="/assets/application.js" type="text/javascript"></script>
+      <meta content="authenticity_token" name="csrf-param" />
+      <meta content="Uv2Ejr+vZmSeSESq6beRhnHDE6MlIBG2V4tJDh0aG+s=" name="csrf-token" />
+    </head>
+
+See it in action in app: meta_tags
+
+<span class="note">
+**Note:** The default behavior of the index action of a controller is to look for the first model object of an array since the index page typically displays a list.  If
+an array is found and the first element of that array is a model object, then, that model is used as the source for values displayed by the seo_ helper methods.
+</span>
+
+### Access a sitemap via HTTP
+
+When a sitemap is accessed via HTTP, the basic steps are...
+
+- A request is made to a sitemap url such as: http://localhost:3000/sitemap.xml
+- The SitemapController kicks in and builds a list of routes associated with the sitemap route.
+- For each route in the list.
+  - Determine the controller name, controller class, and the action name for the route.
+  - Create an instance of the controller and call a handler method on the controller to "ask it" for the <url> nodes to include in the sitemap contents.
+  - When the full list is built, the view code for the sitemap generates and returns the xml to the client.

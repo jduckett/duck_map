@@ -1,0 +1,25 @@
+Description:
+
+  Synchronizes date/time stamps of all views for a Rails app.
+
+  There are three sources of timestamps for views.
+
+    - The physical timestamp of the view file on disk.
+
+    - The timestamp of the view found in the local Git repo for the app.
+
+    - The last known timestamp already stored in config/locales/sitemaps.yml
+
+  All three sources are compared and the source that has the latest timestamp wins and that value
+  
+  is stored in config/locales/sitemaps.yml
+
+Example:
+
+  # Performs a synchronization
+
+  rails g duckmap:sync
+
+  # Performs a synchronization and shows all activity
+
+  rails g duckmap:sync --verbose

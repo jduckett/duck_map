@@ -1,0 +1,91 @@
+---
+:default:
+  :title: 
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_index
+    :first_model: false
+  :segments: {}
+:index:
+  :title: 
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_index
+    :first_model: true
+  :segments: {}
+:show:
+  :title: 
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_show
+    :first_model: true
+  :segments: {}
+:new:
+  :title: 
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_new
+    :first_model: true
+  :segments: {}
+:edit:
+  :title: 
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_edit
+    :first_model: true
+  :segments: {}

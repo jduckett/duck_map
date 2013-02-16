@@ -1,0 +1,64 @@
+#acts_as_sitemap with key
+                #Symbol
+                #String
+                #nil
+
+#acts_as_sitemap without key
+                #Symbol
+                #String
+                #nil
+
+#acts_as_sitemap with key
+                #handler {multiple attributes}
+
+#acts_as_sitemap with out key
+                #handler {multiple attributes}
+
+#acts_as_sitemap with key
+                #segments {multiple attributes}
+
+#acts_as_sitemap with out key
+                #segments {multiple attributes}
+
+#acts_as_sitemap FULL with key without block
+                #Symbol
+                #String
+                #nil
+                #handler {multiple attributes}
+                #segments {multiple attributes}
+
+#acts_as_sitemap FULL with key with block
+                #Symbol
+                #String
+                #nil
+                #handler {multiple attributes}
+                #segments {multiple attributes}
+
+#acts_as_sitemap FULL without key without block
+                #Symbol
+                #String
+                #nil
+                #handler {multiple attributes}
+                #segments {multiple attributes}
+
+#acts_as_sitemap FULL without key with block
+                #Symbol
+                #String
+                #nil
+                #handler {multiple attributes}
+                #segments {multiple attributes}
+
+#acts_as_sitemap title: :my_title
+#acts_as_sitemap title: "my title"
+#acts_as_sitemap title: nil
+#acts_as_sitemap :default, title: :my_title
+#acts_as_sitemap :default, title: "my title"
+#acts_as_sitemap :default, title: nil
+#acts_as_sitemap :default, handler: {action_name: :my_index}
+#acts_as_sitemap handler: {action_name: :my_index}
+#acts_as_sitemap :default, handler: {action_name: :my_index, first_model: true}
+#acts_as_sitemap handler: {action_name: :my_index, first_model: true}
+#acts_as_sitemap :default, segments: {id: :my_id}
+#acts_as_sitemap segments: {id: :my_id}
+#acts_as_sitemap :default, segments: {id: :my_id, title: :my_title}
+#acts_as_sitemap segments: {id: :my_id, title: :my_title}

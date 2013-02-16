@@ -1,0 +1,132 @@
+- build a method on logger to debug Hashes.  display them using YAML.dump
+
+
+put this thing out on gist...
+
+
+# How are meta tag values generated?
+{DuckMap::ActionViewHelpers} have several helper methods that return meta tag values for the current page.  Each one
+of those helper methods call {DuckMap::ControllerHelpers#sitemap_meta_data sitemap_meta_data} to get values.
+{DuckMap::ControllerHelpers#sitemap_meta_data sitemap_meta_data} will check the current value of the instance variable.
+If it is not set, then, sitemap_setup is called to populate it with the appropriate values.  This will ensure that values
+contained in the sitemap will match meta tag values.
+
+general notes:
+- most methods that are part of modules that are automagically included in Rails base classes / modules are prefixed
+  with the named duckmap_ to avoid name collisions.
+
+option to set attribute across all sections?? default, index, show ??
+
+In a nutshell...
+
+  - a request is made to a sitemap url such as: http://localhost:3000/sitemap.xml
+  - a list of routes associated with the sitemap via config/routes.rb is built
+  - for each route in the list
+    - determine the controller and action name and the controller class for the route.
+    - create an instance of the controller and call a handler method on the controller to provide
+      a list of <url> nodes to include in the sitemap for the route.
+    - when the full list is built, the view code for the sitemap generates and returns the xml to the client.
+
+things you need to know...
+
+- sitemaps are defined directly in config/routes.rb
+  /sitemap.xml is defined for you by default.
+- the default sitemap.xml content is based on the standard Rails actions: index and show.
+- you can define multiple sitemaps
+- sitemaps can be namespaced
+- support for nested resources
+- you can include a sitemap_meta_tag in your application layout that will provide things like: title, keywords, lastmod
+  that is also synchronized with the url nodes contained within a sitemap.
+- default behavior for each sitemap url and sitemap_meta_tag is to get values from the first instance of a model that
+  is found within a controller allowing the developer to simply write normal Rails actions and duck_map will automagically
+  find the first available model and use it to set meta data header tags such as title, keywords, description, and lastmod.
+  Also, the same values are synchronized within the matching url contained in the sitemap.xml  You can shut off this behavior
+  down to the controller/action level.
+- rails generator to generate and compress static versions of each sitemap to a file.  thus, allowing the developer
+  to generate large sitemaps using a custom script a reduce load on the server.
+- lastmod can be stored statically.  for example, say you have a view on a controller that does not change much and does
+  not have model on it.  You can run a rails generator to synchronize the timestamp of the physical controller/view files
+  and save them statically in a locale file.  duck_map will automagically use this value when generating a sitemap and
+  meta tag data.
+- define a custom block in config/routes.rb to include extra content in a sitemap.
+- you can define custom controller
+- you can define custom views
+
+configuration...
+- global attributes such as title, keywords, description, lastmod
+- define global defaults for all controller/actions via config/routes.rb using the following methods.
+  - acts_as_sitemap
+  - sitemap_handler
+  - sitemap_segments
+
+- define controller/action level attributes and values directly on the controller using the following methods.
+  - acts_as_sitemap
+  - sitemap_handler
+  - sitemap_segments
+
+- controller/action level custom handler methods allow the developer to handle special needs.
+- controller/action level mapping of url segment keys to matching model attributes.
+  for example, the url requires :id and the attribute on the model is: :my_id
+
+given the following url:
+
+http://localhost:3000/sitemap.xml
+
+- config/routes.rb defines the controller/action for /sitemap.xml
+
+    sitemap_sitemap        /sitemap.:format          sitemap#sitemap
+
+  - a method is defined for sitemap on DuckMap::Sitemap::SitemapControllerHelpers which is included
+    in the SitemapBaseController.  originally, the method was defined on SitemapBaseController itself, however,
+    it was causing problems during development.  if you made a change to any controller, it would blow up for some reason.
+    defining the method on a module and including it i SitemapBaseController seemed to solve the problem.
+    
+  - i need to revisit this area to help support custom controllers a little better.
+
+- an http request is made
+- rails kicks in an calls SitemapController.
+- the sitemap method is called
+
+    # builds the model
+    # creates a list of Hashes used by the views to generate sitemap <url> nodes.
+    # the model is assigned to an instance variable.
+    duckmap_build
+
+    # renders the model.  <urlset>
+    # template not found exception will use the default template
+    respond_to do |format|
+      format.xml { render }
+    end
+
+    # default template
+    <%= sitemap_urls do |row| %>
+      <url>
+        <loc><%= row[:loc] %></loc>
+        <lastmod><%= row[:lastmod] %></lastmod>
+        <changefreq><%= row[:changefreq] %></changefreq>
+        <priority><%= row[:priority] %></priority>
+      </url>
+    <% end %>
+    </urlset>
+
+duckmap_build
+
+- based on the sitemap request url, finds the sitemap route located in config/routes.rb
+- grabs a list of all the routes contained in the sitemap
+  - note: each controller is responsible for creating all of the Hashes to include in the sitemap.
+- loops thru the list.
+  - for each
+  
+    - determine the controller class
+    - create an instance of the controller class.
+    - call duckmap_setup on the controller instance to build a list of Hashes to add to the overall
+      sitemap model
+      - duckmap_setup will interrogate the controller instance and ask it to provide the actual list
+        of Hashes by calling a handler method.
+
+
+
+
+
+
+

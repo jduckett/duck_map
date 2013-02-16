@@ -1,0 +1,3 @@
+class SitemapController < SitemapBaseController
+
+end

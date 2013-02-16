@@ -1,0 +1,8 @@
+--exclude features/*
+--no-private
+--no-cache
+lib/duck_map/**/*.rb
+-
+README.md
+GUIDE.md
+LICENSE.txt

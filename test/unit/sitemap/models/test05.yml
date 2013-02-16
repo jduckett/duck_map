@@ -1,0 +1,95 @@
+---
+:default:
+  :title: :default_title
+  :keywords: "moe larry the cheese"
+  :description: "this is a test"
+  :lastmod: :updated_at
+  :changefreq: "monthly"
+  :priority: "0.4"
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :sitemap_index
+    :first_model: false
+  :segments: {}
+:index:
+  :title: 
+  :keywords: 
+  :description: 
+  :lastmod: 
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 8000
+  :handler:
+    :action_name: :sitemap_index
+    :first_model: true
+  :segments: {}
+:show:
+  :title: :show_title
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: :my_action
+    :first_model: false
+    :my_attribute: :my_value
+  :segments:
+    :id: :my_id
+    :sub_id: :book_id
+    :title: :my_title
+:new:
+  :title: :new_title
+  :keywords: :keywords
+  :description: :description
+  :lastmod: :updated_at
+  :changefreq: 
+  :priority: 
+  :canonical: 
+  :canonical_host: 
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: 
+  :url_limit: 
+  :handler:
+    :action_name: 
+    :first_model: false
+  :segments: {}
+:edit:
+  :title: "edit_title"
+  :keywords: "rails duck_map"
+  :description: "testing duck map"
+  :lastmod: :updated_at
+  :changefreq: "yearly"
+  :priority: "0.6"
+  :canonical: "http://localhost:3000/"
+  :canonical_host: "example.com"
+  :canonical_port: 
+  :static_host: 
+  :static_port: 
+  :url_format: "xml"
+  :url_limit: 4000
+  :handler:
+    :action_name: :sitemap_edit
+    :first_model: true
+  :segments: {}

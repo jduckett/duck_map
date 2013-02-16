@@ -1,0 +1,23 @@
+Description:
+
+  Lists all of the sitemap route(s) configured via config/routes.rb
+
+  You have the option of including the route(s) contained within a sitemap.  This can be helpful for debugging.
+
+  If you specify a single route name, then, displaying the route(s) contained within the sitemap is implied and
+  
+  overrides the --contents option.
+
+Example:
+
+  # Lists all of the sitemap route(s) configured via config/routes.rb
+
+    rails g duckmap:sitemaps
+
+  # Lists all of the sitemap route(s) configured via config/routes.rb including route(s) contained in each sitemap route.
+
+    rails g duckmap:sitemaps --contents
+
+  # Lists the route(s) contained within sitemap route named mysitemap.
+
+    rails g duckmap:sitemaps mysitemap

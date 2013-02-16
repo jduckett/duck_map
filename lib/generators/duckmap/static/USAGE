@@ -1,0 +1,47 @@
+Description:
+
+  Generates a sitemap(s) based on :key.  The default key is: all
+  
+  Key is the route name of a sitemap route defined in config/routes.rb
+  
+  To list all of the available sitemaps including name and contents use: rails g duckmap:sitemaps
+
+  You can override the static_host and static_port settings in config/routes.rb by passing them
+  
+  to the generator on the command line.
+
+  Also, you can specify the target base directory to use when writing files.  The default target is the public
+  
+  directory of your Rails app.
+  
+  #{Rails.root}/public/sitemap.xml
+
+Example:
+
+  # generates all sitemaps configured via config/routes.rb
+
+    rails g duckmap:static
+
+      - or -
+
+    rails g duckmap:static all
+
+  # generates a specific sitemap using the route name.
+
+    rails g duckmap:static mysitemap
+
+  # overrides static_host and static_port defined in config/routes.rb
+
+    rails g duckmap:static mysitemap --static-host=example.com --static-port=8080
+
+  # generates and compresses the output file(s).  Overrides setting in config/routes.rb
+
+    rails g duckmap:static mysitemap --compression=compressed
+
+  # disables compression for the output file(s).  Overrides setting in config/routes.rb
+
+    rails g duckmap:static mysitemap --compression=none
+
+  # generates sitemap files in a specific target directory
+
+    rails g duckmap:static mysitemap --static-target=/tmp/mysitemaps
