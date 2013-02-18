@@ -3,9 +3,11 @@
 
 # Duck Map
 
-**Homepage**:     [http://jeffduckett.com](http://jeffduckett.com)
+**Homepage**:       [http://jeffduckett.com](http://jeffduckett.com)
 
-**Git**:          [http://github.com/jduckett01/duck_map](http://github.com/jduckett01/duck_map)
+**Git**:            [http://github.com/jduckett01/duck_map](http://github.com/jduckett01/duck_map)
+
+**Documentation**:  [http://rubydoc.info/github/jduckett01/duck_map/frames](http://rubydoc.info/github/jduckett01/duck_map/frames)
 
 **Author**:       Jeff Duckett
 
@@ -19,7 +21,7 @@ Duck Map is a Rails 3.x compliant gem providing support for dynamically generati
 
 ## Full Guide
 
-<span class="note">For an in depth discussion see: <a href="file.GUIDE.html">Full guide (GUIDE.md)</a></span>
+<span class="note">For an in depth discussion see: {file:GUIDE.md Full guide (GUIDE.md)}</span>
 
 ## Feature List
 - Sitemaps are baked into the standard Rails Routing Code base and are defined directly in config/routes.rb.
