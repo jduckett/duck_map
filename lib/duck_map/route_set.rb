@@ -105,6 +105,8 @@ module DuckMap
 
       end
 
+      list.reject! {|route| route.path.spec =~ %r{/rails/info/properties|^/assets}}
+
       return list
     end
 

@@ -50,8 +50,7 @@ module DuckMap
 
             sitemap_routes = Rails.application.routes.sitemap_routes(route)
             if sitemap_routes.length > 0
-              #puts %(\r\n#{"".ljust(5)} route name                         controller_name#action_name)
-              #puts %(#{"".ljust(5)}                                    path)
+
               puts %(#{"".ljust(5)} --------------------------------------------------------------)
 
               sitemap_routes.each do |sitemap_route|
