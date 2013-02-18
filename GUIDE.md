@@ -142,6 +142,50 @@ within the block will be included in the sitemap.  The following will produce th
 - tools sitemap accessible at: http://localhost:3000/tools.xml
 
 ### Namespaces
+Namespaces are supported for sitemaps.  Namespaces could be a great solution for logically grouping sitemaps for large sites. Sitemaps behave in the
+same manner regardless of namespace.  The main difference is the path pointing to the actual sitemap content.  The following example defines
+five sitemaps including the default.
+
+    MyApp::Application.routes.draw do
+      
+      namespace :products do
+
+        sitemap do                            # /products/sitemap.xml
+          namespace :video do
+            sitemap do                        # /products/video/sitemap.xml
+              sitemap :bluray do              # /products/video/bluray.xml
+                resources :blu_ray_players
+              end
+              
+              resources :dvd_players
+              resources :accessories
+            end
+          end
+
+          namespace :audio do
+            sitemap do                        # /products/audio/sitemap.xml
+              resources :head_phones
+              resources :speakers
+              resources :accessories
+            end
+          end
+          resources :papers
+          resources :pencils
+        end
+
+      end
+
+      root :to => 'home#index'                # included in the default sitemap: /sitemap.xml
+      resources :faqs
+
+    end
+
+- Products sitemap includes paper and pencils.
+  - Products/video includes dvd_players and accessories.
+  - Products/video/bluray includes blu_ray_players.  Notice that the sitemap block includes the name: bluray.  If we would have excluded the name,
+    the routes within the block would have simply been added to /products/video/sitemap.xml and /products/video/bluray.xml would never be defined.
+  - Products/audio includes head_phones, speakers, and accessories.
+- The default sitemap includes the root url and FAQs.
 
 ### Nested Resources
 

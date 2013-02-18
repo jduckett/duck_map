@@ -19,7 +19,7 @@ Duck Map is a Rails 3.x compliant gem providing support for dynamically generati
 
 ## Full Guide
 
-<span class="note">For an in depth discussion see: {file:GUIDE.md Full Guide}</span>
+<span class="note">For an in depth discussion see: <a href="file.GUIDE.html">Full guide (GUIDE.md)</a></span>
 
 ## Feature List
 - Sitemaps are baked into the standard Rails Routing Code base and are defined directly in config/routes.rb.

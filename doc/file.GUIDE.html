@@ -222,6 +222,57 @@ within the block will be included in the sitemap.  The following will produce th
 
 <h3>Namespaces</h3>
 
+<p>Namespaces are supported for sitemaps.  Namespaces could be a great solution for logically grouping sitemaps for large sites. Sitemaps behave in the
+same manner regardless of namespace.  The main difference is the path pointing to the actual sitemap content.  The following example defines
+five sitemaps including the default.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+
+  <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:products</span> <span class='kw'>do</span>
+
+    <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                            <span class='comment'># /products/sitemap.xml
+</span>      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:video</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/video/sitemap.xml
+</span>          <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='symbol'>:bluray</span> <span class='kw'>do</span>              <span class='comment'># /products/video/bluray.xml
+</span>            <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:blu_ray_players</span>
+          <span class='kw'>end</span>
+
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:dvd_players</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:audio</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/audio/sitemap.xml
+</span>          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:head_phones</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:speakers</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:papers</span>
+      <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:pencils</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_root'>root</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>home#index</span><span class='tstring_end'>'</span></span>                <span class='comment'># included in the default sitemap: /sitemap.xml
+</span>  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:faqs</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<ul>
+<li>Products sitemap includes paper and pencils.
+
+<ul>
+<li>Products/video includes dvd_players and accessories.</li>
+<li>Products/video/bluray includes blu_ray_players.  Notice that the sitemap block includes the name: bluray.  If we would have excluded the name,
+the routes within the block would have simply been added to /products/video/sitemap.xml and /products/video/bluray.xml would never be defined.</li>
+<li>Products/audio includes head_phones, speakers, and accessories.</li>
+</ul></li>
+<li>The default sitemap includes the root url and FAQs.</li>
+</ul>
+
 <h3>Nested Resources</h3>
 
 <h3>Route Filters</h3>
@@ -292,7 +343,7 @@ it on the production server.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sat Feb 16 08:44:20 2013 by
+  Generated on Mon Feb 18 14:15:28 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
