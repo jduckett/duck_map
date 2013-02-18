@@ -1,6 +1,5 @@
 [![Build Status](https://secure.travis-ci.org/jduckett01/duck_map.png?branch=master)](http://travis-ci.org/jduckett01/duck_map)
 
-
 # Duck Map
 
 **Homepage**:       [http://jeffduckett.com](http://jeffduckett.com)
