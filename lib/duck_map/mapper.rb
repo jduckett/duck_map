@@ -35,6 +35,10 @@ module DuckMap
       @set.routes.last.sitemap_route_name = last_route_name
       @set.routes.last.sitemap_raw_route_name = sitemap_raw_route_name
 
+      # this is how I am faking to always point to the SitemapController
+      # regardless of namespace
+      @set.routes.last.defaults[:controller] = "sitemap"
+
       # determine if we added a duplicate route.
       # The gem defines a default sitemap in config/routes.rb (inside the gem, not the app).
       # So, it is very likely that most apps will be creating duplicates since most of the code is geared towards
