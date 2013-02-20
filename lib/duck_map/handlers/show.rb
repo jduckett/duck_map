@@ -8,6 +8,60 @@ module DuckMap
       extend ActiveSupport::Concern
 
       ##################################################################################
+      # Default handler method for show actions.
+      #
+      # The source of a request for data can be from two sources.
+      # - sitemap requesting url nodes for a given route.
+      # - meta tag requesting data for HEAD section meta tags.
+      #
+      # This method will return an Array of Hashes that represent url nodes of a sitemap.  Also,
+      # sitemap_meta_data is populated with a single Hash for meta tags.  So, this is considered
+      # a shared method.
+      #
+      # The basic procedure is as follows:
+      #
+      # - default values are obtained from {DuckMap::Config} and stored in a return Hash.
+      # - the controller "show" action method is never called as it is not needed.
+      #   - if the request is a meta tag, then, the show method has already been called.
+      #   - if the request is a sitemap, then, we would looking for a list of rows instead of just one
+      #     row, because, a show route would always be pointing to a single item and the sitemap would want to show
+      #     all of those items or at least a defined list of them.
+      # - static last-modified date is obtained from config/locales/sitemap.yml
+      # - sitemap_capture_attributes is called directly on the controller.  Any values are merged with the return Hash.
+      # - now, the processing splits based on the type of request.
+      # - if meta tag
+      #   - first model object automagically found on the controller
+      #     unless "first_model" has been set to false, find the first instance of a model object on the controller
+      #     and use it as the data source for values.
+      #   - unless a canonical url has been obtained during any of the preceding steps, build the canonical url
+      #     based on the route and data source object found during preceding steps.  the segment keys are NOT processed
+      #     as the values should be automagically part of the url building since this is being called as part of an
+      #     HTTP request.  The segment key should simply already be there.
+      #   - add the return Hash to the return Array and set the meta tag instance variable.
+      # - otherwise, assume sitemap
+      #   - process some type of model in the following order of precedence depending on configuration.
+      #     - process block
+      #       if the controller was configured with a block, then, execute the block and use the return value
+      #       as the data source for values.
+      #     - process model configured via the handler
+      #       if a model class was assigned to the handler, then, execute "all" method on the model and use the return value
+      #       as the data source for values.
+      #     - model object automagically found by the sitemap_build method.
+      #       the "all" method is called on the model object.
+      #     - first model object is never processed for the show method when the request is via a sitemap.
+      #       the reason is the show method is never called, therefore, an instance of a model would not exist on the controller.
+      #   - the goal is ALWAYS to work with a list of model objects.  once a list has been established,
+      #     process all of the model objects in the list.
+      #     - for each object
+      #       - build a row Hash based copied from all of the values captured thus far.
+      #       - call sitemap_capture_attributes on the model to obtain values and merge them with the row Hash.
+      #       - unless a canonical url has been obtained during any of the preceding steps, build the canonical url
+      #         based on the route and data source object found during preceding steps.  segment keys are build via a call
+      #         to sitemap_capture_segments on the model.
+      #       - add the row Hash to the return Array
+      #       - do nothing to the meta tag instance variable.
+      # - done.
+      # @return [Array]
       def sitemap_show(options = {})
         rows = []
 

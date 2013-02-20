@@ -4,15 +4,6 @@ module DuckMap
   module Handlers
 
     ##################################################################################
-# get default values and assign to local variable containing all values from a single url node
-# and meta tag values for the index action.  the local variable is referred to as "values".
-# - user can override method and manipulate the default values...
-# index action is called.
-# - uses existing values generated via the index method
-# - gives the developer a chance to set instance values to handle special cases
-# lastmod is obtained from locale and merged with "values".
-# call sitemap_capture_attributes on the controller to capture values of the current state and merge them with "values".
-# 
     module Index
       extend ActiveSupport::Concern
 
@@ -27,6 +18,40 @@ module DuckMap
       end
 
       ##################################################################################
+      # Default handler method for index actions.
+      #
+      # The source of a request for data can be from two sources.
+      # - sitemap requesting url nodes for a given route.
+      # - meta tag requesting data for HEAD section meta tags.
+      #
+      # This method will return an Array of Hashes that represent url nodes of a sitemap.  Also,
+      # sitemap_meta_data is populated with a single Hash for meta tags.  So, this is considered
+      # a shared method.
+      #
+      # The basic procedure is as follows:
+      #
+      # - default values are obtained from {DuckMap::Config} and stored in a return Hash.
+      # - if request source is :sitemap, then, the index method of the controller is called.
+      #   This will allow you to set instance variables, etc. within the index method of a controller.
+      # - static last-modified date is obtained from config/locales/sitemap.yml
+      # - sitemap_capture_attributes is called directly on the controller.  Any values are merged with the return Hash.
+      # - process some type of model in the following order of precedence depending on configuration.
+      #   - process block
+      #     if the controller was configured with a block, then, execute the block and use the return value
+      #     as the data source for values.
+      #   - process model configured via the handler
+      #     if a model class was assigned to the handler, then, execute "all" method on the model and use the return value
+      #     as the data source for values.
+      #   - first model object automagically found on the controller
+      #     unless "first_model" has been set to false, find the first instance of a model object on the controller
+      #     and use it as the data source for values.
+      # - once a data source object has been established, call sitemap_capture_attributes to obtain values and merge
+      #   them with the return Hash.
+      # - unless a canonical url has been obtained during any of the preceding steps, build the canonical url
+      #   based on the route and data source object found during preceding steps. 
+      # - add the return Hash to the return Array and set the meta tag instance variable.
+      # - done.
+      # @return [Array]
       def sitemap_index(options = {})
         rows = []
 
@@ -49,7 +74,6 @@ module DuckMap
           end
 
         end
-
 
         lastmod = self.sitemap_static_lastmod(options[:controller_name], options[:action_name])
         unless lastmod.blank?
@@ -115,6 +139,7 @@ module DuckMap
           # i'm really being lazy here, but, if the current route is
           # the root, then, reassign the url to eliminate ?format=html, etc.
           # from the url.
+          # index actions do not require segment keys, therefore, no need to process them.
           if !route.name.blank? && route.name.eql?("root")
             url_options.delete(:format)
             values[:canonical] = root_url(url_options)
@@ -127,6 +152,7 @@ module DuckMap
           values[:loc] = values[:canonical]
         end
 
+        # push the merged hash and set the instance variable for the meta tag
         rows.push(values)
 
         self.sitemap_meta_data = values
