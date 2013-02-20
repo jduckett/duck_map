@@ -188,8 +188,116 @@ five sitemaps including the default.
 - The default sitemap includes the root url and FAQs.
 
 ### Nested Resources
+DuckMap provides support for nested resources, however, they could become a little tricky depending on your app.  The important thing
+to understand is that the target model object is ultimately responsible for providing the values required by any particular nested route.  The
+mechanism used to provide these values is: {DuckMap::SitemapObject#sitemap_capture_segments sitemap_capture_segments}.
+
+The following configuration:
+
+    MyApp::Application.routes.draw do
+
+      resources :books do
+        resources :comments
+      end
+
+    end
+
+Would have a named route like:
+
+    book_comment GET    /books/:book_id/comments/:id(.:format)      comments#show
+
+And could produce something similar to:
+
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>http://localhost:3000/books.html</loc>
+        <lastmod>2013-02-20T15:46:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>http://localhost:3000/books/1.html</loc>
+        <lastmod>2013-02-20T15:46:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>http://localhost:3000/books/1/comments/1.html</loc>
+        <lastmod>2013-02-20T15:46:35+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    </urlset>
+
+You can see that the "show" action for the route has segment keys :book_id and :id.  When the url is built, the
+Comment model is "asked" for the segment key values for the route by a call to {DuckMap::SitemapObject#sitemap_capture_segments sitemap_capture_segments}.
+The model is passed an Array containing all of the keys required to build the url for the named route.  In this case,
+the default behavior would be to ask the Comment model for :book_id and :id.  If you are following Rails conventions,
+DuckMap should be able to pickup most nested routes.  However, we are not always afforded the luxury of adhering to
+all conventions.  Therefore, you have the option of defining segment key mappings.
+
+    class Comment < ActiveRecord::Base
+
+      sitemap_segments book_id: :my_book_id
+
+    end
+
+When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those values
+back to the real :book_id and :id when the url is built.
 
 ### Route Filters
+Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the
+route (i.e. root_url).  For the most part, named routes represent controllers and models.  It is doubtful that you would want to include
+any URL in a sitemap that performs an HTTP POST, PUT, or DELETE operation.  Therefore, the default named route filters exclude all routes
+and have a verb of POST, PUT, or DELETE.  Also excluded are all named routes that have an action name of: :create, :update, or :destroy.
+Basically, this leaves all routes that have a HTTP verb of GET.  For routes that represent resources this would include the :edit, :index,
+:new and :show actions.  These default setting should cover just about general needs for generating a sitemap.  However, you can reset all
+of the filters to empty and include everything or exclude only what you need.  Also, named route filters are local to a sitemap block.
+Meaning, you can define default filters at the top of config/routes.rb and define addtional filters within as many sitemap blocks as you wish.
+When you define exclude filters within a block,  the current state of the exclude filters outside of the block is copied and used within the block.
+
+<span class="note">**Note:** Filters ARE NOT applied DURING the execution of a block.  Filters are applied to the list of routes that are generated
+AFTER the block executes.</span>
+
+- filters are applied to routes contained within a block AFTER the block executes.
+- location of filter statements is irrelevant.
+  - top or bottom of the entire file config/routes.rb (applied to the entire file).
+  - top or bottom of the block (applied to the entire block).
+- filters can be place directly on a route, resources statement
+- you can include / exclude the following things:  actions, controllers, names, verbs
+
+
+The following example applies filters to the entire config/routes.rb file.
+
+    MyApp::Application.routes.draw do
+
+      exclude_actions :show     # exclude all "show" actions from all routes.
+      root to: 'home#index'
+      resources :contact
+      resources :faqs
+
+      # you could put the exclude_actions method here and get the same result.
+    end
+
+The following example encapsulates and applies filters to a sitemap block, however, contents are included in the default sitemap.
+
+    MyApp::Application.routes.draw do
+
+      # included in default sitemap
+      root to: 'home#index'
+      resources :contact
+      resources :faqs
+
+      # using a block to encapsulate, however, contents are included in the default sitemap.
+      sitemap do
+
+        exclude_actions :show   # excludes the "show" action from every route witnin the block
+        resources :dvd_players
+        resources :accessories
+        # you could put the exclude_actions method here and get the same result.
+      end
+
+    end
 
 ## Values And Attributes
 Values are generated for two main areas:

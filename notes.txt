@@ -127,6 +127,16 @@ duckmap_build
 
 
 
+### Access a sitemap via HTTP
+
+When a sitemap is accessed via HTTP, the basic steps are...
+
+- A request is made to a sitemap url such as: http://localhost:3000/sitemap.xml
+- The SitemapController kicks in and builds a list of routes associated with the sitemap route.
+- For each route in the list.
+  - Determine the controller name, controller class, and the action name for the route.
+  - Create an instance of the controller and call a handler method on the controller to "ask it" for the <url> nodes to include in the sitemap contents.
+  - When the full list is built, the view code for the sitemap generates and returns the xml to the client.
 
 
 

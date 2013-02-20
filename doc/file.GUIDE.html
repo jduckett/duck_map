@@ -275,7 +275,127 @@ the routes within the block would have simply been added to /products/video/site
 
 <h3>Nested Resources</h3>
 
+<p>DuckMap provides support for nested resources, however, they could become a little tricky depending on your app.  The important thing
+to understand is that the target model object is ultimately responsible for providing the values required by any particular nested route.  The
+mechanism used to provide these values is: <span class='object_link'><a href="DuckMap/SitemapObject.html#sitemap_capture_segments-instance_method" title="DuckMap::SitemapObject#sitemap_capture_segments (method)">sitemap_capture_segments</a></span>.</p>
+
+<p>The following configuration:</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+
+  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:books</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:comments</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Would have a named route like:</p>
+
+<pre class="code ruby"><code>book_comment GET    /books/:book_id/comments/:id(.:format)      comments#show
+</code></pre>
+
+<p>And could produce something similar to:</p>
+
+<pre class="code ruby"><code>&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:3000/books.html&lt;/loc&gt;
+    &lt;lastmod&gt;2013-02-20T15:46:13+00:00&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.5&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:3000/books/1.html&lt;/loc&gt;
+    &lt;lastmod&gt;2013-02-20T15:46:13+00:00&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.5&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:3000/books/1/comments/1.html&lt;/loc&gt;
+    &lt;lastmod&gt;2013-02-20T15:46:35+00:00&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.5&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+
+<p>You can see that the &quot;show&quot; action for the route has segment keys :book_id and :id.  When the url is built, the
+Comment model is &quot;asked&quot; for the segment key values for the route by a call to <span class='object_link'><a href="DuckMap/SitemapObject.html#sitemap_capture_segments-instance_method" title="DuckMap::SitemapObject#sitemap_capture_segments (method)">sitemap_capture_segments</a></span>.
+The model is passed an Array containing all of the keys required to build the url for the named route.  In this case,
+the default behavior would be to ask the Comment model for :book_id and :id.  If you are following Rails conventions,
+DuckMap should be able to pickup most nested routes.  However, we are not always afforded the luxury of adhering to
+all conventions.  Therefore, you have the option of defining segment key mappings.</p>
+
+<pre class="code ruby"><code><span class='kw'>class</span> <span class='const'>Comment</span> <span class='op'>&lt;</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span>
+
+  <span class='id identifier rubyid_sitemap_segments'>sitemap_segments</span> <span class='label'>book_id:</span> <span class='symbol'>:my_book_id</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those values
+back to the real :book_id and :id when the url is built.</p>
+
 <h3>Route Filters</h3>
+
+<p>Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the
+route (i.e. root_url).  For the most part, named routes represent controllers and models.  It is doubtful that you would want to include
+any URL in a sitemap that performs an HTTP POST, PUT, or DELETE operation.  Therefore, the default named route filters exclude all routes
+and have a verb of POST, PUT, or DELETE.  Also excluded are all named routes that have an action name of: :create, :update, or :destroy.
+Basically, this leaves all routes that have a HTTP verb of GET.  For routes that represent resources this would include the :edit, :index,
+:new and :show actions.  These default setting should cover just about general needs for generating a sitemap.  However, you can reset all
+of the filters to empty and include everything or exclude only what you need.  Also, named route filters are local to a sitemap block.
+Meaning, you can define default filters at the top of config/routes.rb and define addtional filters within as many sitemap blocks as you wish.
+When you define exclude filters within a block,  the current state of the exclude filters outside of the block is copied and used within the block.</p>
+
+<p><span class="note"><strong>Note:</strong> Filters ARE NOT applied DURING the execution of a block.  Filters are applied to the list of routes that are generated
+AFTER the block executes.</span></p>
+
+<ul>
+<li>filters are applied to routes contained within a block AFTER the block executes.</li>
+<li>location of filter statements is irrelevant.
+
+<ul>
+<li>top or bottom of the entire file config/routes.rb (applied to the entire file).</li>
+<li>top or bottom of the block (applied to the entire block).</li>
+</ul></li>
+<li>filters can be place directly on a route, resources statement</li>
+<li>you can include / exclude the following things:  actions, controllers, names, verbs</li>
+</ul>
+
+<p>The following example applies filters to the entire config/routes.rb file.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+
+  <span class='id identifier rubyid_exclude_actions'>exclude_actions</span> <span class='symbol'>:show</span>     <span class='comment'># exclude all &quot;show&quot; actions from all routes.
+</span>  <span class='id identifier rubyid_root'>root</span> <span class='label'>to:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>home#index</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:contact</span>
+  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:faqs</span>
+
+  <span class='comment'># you could put the exclude_actions method here and get the same result.
+</span><span class='kw'>end</span>
+</code></pre>
+
+<p>The following example encapsulates and applies filters to a sitemap block, however, contents are included in the default sitemap.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+
+  <span class='comment'># included in default sitemap
+</span>  <span class='id identifier rubyid_root'>root</span> <span class='label'>to:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>home#index</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:contact</span>
+  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:faqs</span>
+
+  <span class='comment'># using a block to encapsulate, however, contents are included in the default sitemap.
+</span>  <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>
+
+    <span class='id identifier rubyid_exclude_actions'>exclude_actions</span> <span class='symbol'>:show</span>   <span class='comment'># excludes the &quot;show&quot; action from every route witnin the block
+</span>    <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:dvd_players</span>
+    <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
+    <span class='comment'># you could put the exclude_actions method here and get the same result.
+</span>  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
 
 <h2>Values And Attributes</h2>
 
@@ -463,7 +583,7 @@ it on the production server.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Feb 20 06:55:13 2013 by
+  Generated on Wed Feb 20 10:47:19 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
