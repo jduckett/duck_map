@@ -277,6 +277,126 @@ the routes within the block would have simply been added to /products/video/site
 
 <h3>Route Filters</h3>
 
+<h2>Values And Attributes</h2>
+
+<p>Values are generated for two main areas:</p>
+
+<ol>
+<li>Url nodes of a sitemap</li>
+<li>Meta tags of a page.</li>
+</ol>
+
+<p>How those values are generated depends on the handler generating them, however, all of the handlers follow a general
+procedure.  Start with default values and continue to merge new values until all of the options and logic for the given
+handler have been completely exhausted.</p>
+
+<p>For example, when generating sitemap or meta tag values for the index action of a controller, the <span class='object_link'><a href="DuckMap/Handlers/Index.html" title="DuckMap::Handlers::Index (module)">index handler</a></span>
+will:</p>
+
+<ul>
+<li>grab the global default values and put them into a Hash.</li>
+<li>ask the controlller for any values that it needs to overwrite and merge them with the Hash.</li>
+<li>if the first_model option is true, then, it will find the first model on the controller, ask it for values to overwrite and merge them with the Hash.</li>
+<li>and so on.</li>
+</ul>
+
+<p>The index handler actually does a little more work than described, however, the overall point is that all of the handlers will start with global defaults
+and overwrite values as per handler behavior and configuration.  The intent is to give the developer the power to fine tune the content that is generated
+for any particular sitemap url node or meta tag down to the lowest possible levels.</p>
+
+<h3>Setting Global Default Values And Attributes</h3>
+
+<p>Global default values and attributes are set in config/routes.rb.  See <span class='object_link'><a href="DuckMap/ConfigHelpers.html" title="DuckMap::ConfigHelpers (module)">DuckMap::ConfigHelpers</a></span> for a list of all of the available helper methods to set
+values and attributes within config/routes.rb file.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_title'>title</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>My Rails App</span><span class='tstring_end'>&quot;</span></span>              <span class='comment'># default title for meta tags
+</span>  <span class='id identifier rubyid_lastmod'>lastmod</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>02/04/2013</span><span class='tstring_end'>&quot;</span></span>              <span class='comment'># default last-modified date for sitemap and meta tags
+</span>  <span class='id identifier rubyid_canonical_host'>canonical_host</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>www.example.com</span><span class='tstring_end'>&quot;</span></span>  <span class='comment'># default canonical host for sitemap and meta tags.
+</span><span class='kw'>end</span>
+</code></pre>
+
+<p>There are three methods used to configure values and attributes for global configuration, controllers and models.</p>
+
+<ol>
+<li><span class='object_link'><a href="DuckMap/SitemapObject/ClassMethods.html#acts_as_sitemap-instance_method" title="DuckMap::SitemapObject::ClassMethods#acts_as_sitemap (method)">acts_as_sitemap</a></span> - sets all values and attributes including handlers and segments.</li>
+<li><span class='object_link'><a href="DuckMap/SitemapObject/ClassMethods.html#sitemap_handler-instance_method" title="DuckMap::SitemapObject::ClassMethods#sitemap_handler (method)">sitemap_handler</a></span> - wrapper method for acts_as_sitemap.</li>
+<li><span class='object_link'><a href="DuckMap/SitemapObject/ClassMethods.html#sitemap_segments-instance_method" title="DuckMap::SitemapObject::ClassMethods#sitemap_segments (method)">sitemap_segments</a></span> - wrapper method for acts_as_sitemap.</li>
+</ol>
+
+<p>Two of the methods are really just convenience methods to help reduce code clutter.  All of the handlers are capable
+of being configured globally as well.  Let&#39;s say you have a standard column on all of your tables named &quot;tags&quot; and it
+is used to store information that would work well for the keywords meta tag.  You can easily tell all of the handlers
+within your app to use the &quot;tags&quot; attribute from a model by using the following configuration.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_acts_as_sitemap'>acts_as_sitemap</span> <span class='label'>keywords:</span> <span class='symbol'>:tags</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3>Setting Values And Attributes Directly On The Controller And Model</h3>
+
+<p>You can fine tune the values that are generated by the handlers by using acts_as_sitemap, sitemap_handler or sitemap_segments directly
+on a controller, model or both.  The syntax is the same regardless of where you use it.  The following example configures a global title that is overwritten with a static title String for all index actions
+and grabs the &quot;my_title&quot; attribute from the first model found on the controller during a show action.</p>
+
+<pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
+
+  <span class='comment'># default title for meta tags
+</span>  <span class='id identifier rubyid_title'>title</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>My Rails App</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># this would overwrite the global title &quot;My Rails App&quot;
+</span>  <span class='comment'># if the current object has the &quot;common_title&quot; attribute, otherwise, it would use &quot;My Rails App&quot;
+</span>  <span class='id identifier rubyid_acts_as_sitemap'>acts_as_sitemap</span> <span class='label'>title:</span> <span class='symbol'>:common_title</span>
+
+<span class='kw'>end</span>
+
+<span class='kw'>class</span> <span class='const'>BooksController</span> <span class='op'>&lt;</span> <span class='const'>ApplicationController</span>
+
+  <span class='comment'># this would overwrite the global title &quot;My Rails App&quot;
+</span>  <span class='id identifier rubyid_acts_as_sitemap'>acts_as_sitemap</span> <span class='symbol'>:index</span><span class='comma'>,</span> <span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Books Listing</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># this would overwrite the global title &quot;My Rails App&quot;
+</span>  <span class='comment'># if the current object has the &quot;my_title&quot; attribute, otherwise, it would use &quot;My Rails App&quot;
+</span>  <span class='id identifier rubyid_acts_as_sitemap'>acts_as_sitemap</span> <span class='symbol'>:show</span><span class='comma'>,</span> <span class='label'>title:</span> <span class='symbol'>:my_title</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<h2>Meta Tags</h2>
+
+<p>A feature of DuckMap is synchronization of data between sitemap and meta tags.  Meaning, data contained in a sitemap should match meta tag data within
+the HEAD section of a page.  Handlers are the single mechanism used to provide data to both sitemaps and meta tags.  sitemap_meta_tag is a helper method
+that provides title, keywords, description, last-modified, and canonical url.  Existing Rails apps may already have code
+in place that provides some or all of the data items generated by sitemap_meta_tag and could potentially force you to write
+some hack to accomodate both.  So, you have the opiton of using sitemap_meta_tag to generate all meta tag items or you can
+call individual methods to generate the only data you want.</p>
+
+<pre class="code ruby"><code># app/layouts/application.html.erb
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;%= sitemap_meta_tags %&gt;
+&lt;/head&gt;
+
+# would generate something similar to the following:
+&lt;head&gt;
+  &lt;title&gt;My First Book&lt;/title&gt;
+  &lt;meta content=&quot;Rails, Ruby on Rails, Ruby, Programming&quot; name=&quot;keywords&quot; /&gt;
+  &lt;meta content=&quot;This is a short description of my application.&quot; name=&quot;description&quot; /&gt;
+  &lt;meta content=&quot;Wed, 01 Jan 2014 07:07:00 UTC&quot; name=&quot;Last-Modified&quot; /&gt;
+&lt;/head&gt;
+
+# here we are using a couple individual methods
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;%= sitemap_meta_title %&gt;
+  &lt;%= sitemap_meta_lastmod %&gt;
+  &lt;%= sitemap_meta_canonical %&gt;
+&lt;/head&gt;
+</code></pre>
+
 <h2>Logging</h2>
 
 <p>Duck Map keeps a detailed log during the generation of a sitemap.  Use this log to determine why a route is or is not being included in a siteamp.  The default
@@ -343,7 +463,7 @@ it on the production server.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Feb 18 14:32:22 2013 by
+  Generated on Tue Feb 19 18:40:43 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

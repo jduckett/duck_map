@@ -36,6 +36,23 @@ class ActsAsSitemap05Test < ActiveSupport::TestCase
 
   end
 
+  #################################################################################
+  test "acts_as_sitemap lastmod as String" do
+
+    DuckMap::Config.reset
+
+    Rails.application.routes.draw do
+      acts_as_sitemap lastmod: "02/16/2013"
+    end
+
+    value = DuckMap::Config.sitemap_attributes_hash[:default][:lastmod]
+    assert value.kind_of?(Time)
+    assert value.day.eql?(16)
+    assert value.month.eql?(2)
+    assert value.year.eql?(2013)
+
+  end
+
 end
 
 

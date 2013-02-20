@@ -178,6 +178,19 @@ module DuckMap
           keys.push(key)
         end
 
+        if values[:lastmod].kind_of?(String)
+          begin
+
+            buffer = LastMod.to_date(values[:lastmod])
+            if buffer.kind_of?(Time)
+              values[:lastmod] = buffer
+            end
+
+          rescue Exception => e
+            # TODO logging
+          end
+        end
+
         # process all of the keys in the list.
         keys.each do |key|
 

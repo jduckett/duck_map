@@ -17,10 +17,6 @@ class SitemapIndexGeneric < TablelessModel
   column :url_limit, :integer
   column :updated_at, :timestamp
 
-  #def self.all
-    #return [self.new]
-  #end
-
 end
 
 class SitemapIndexRequest < ActionDispatch::Request
@@ -33,11 +29,6 @@ class SitemapIndexRequest < ActionDispatch::Request
 end
 
 class SitemapIndexTest < ActiveSupport::TestCase
-
-#test "dude" do
-#data_rows = SitemapIndexGeneric.all
-#puts ".........data_rows: #{data_rows}"
-#end
 
   ##################################################################################
   # this test will rely completely on default values from config
