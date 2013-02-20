@@ -12,7 +12,7 @@ module Duckmap
                 required: false,
                 optional: true
 
-      class_option :contents, desc: "Include the routes contained in a sitemap"
+      class_option :verbose, desc: "Include the routes contained in a sitemap"
 
       def self.source_root
         File.join(File.dirname(__FILE__), "templates")
@@ -22,8 +22,8 @@ module Duckmap
 
         config = {key: key}
 
-        unless options[:contents].blank?
-          config[:contents] = options[:contents]
+        unless options[:verbose].blank?
+          config[:verbose] = options[:verbose]
         end
 
         DuckMap::List.new.build(config)

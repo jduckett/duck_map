@@ -9,9 +9,9 @@ module DuckMap
 
       key = options[:key].blank? ? :all : options[:key].to_s.downcase.to_sym
 
-      contents = options.has_key?(:contents) ? true : false
+      verbose = options.has_key?(:verbose) ? true : false
 
-      contents = key.eql?(:all) ? contents : true
+      verbose = key.eql?(:all) ? verbose : true
 
       puts "Searching for route: #{key}"
 
@@ -46,7 +46,7 @@ module DuckMap
 
           puts %(#{"".ljust(40)} #{route.path.spec})
 
-          if contents
+          if verbose
 
             sitemap_routes = Rails.application.routes.sitemap_routes(route)
             if sitemap_routes.length > 0
