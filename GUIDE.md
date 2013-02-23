@@ -147,52 +147,68 @@ same manner regardless of namespace.  The main difference is the path pointing t
 five sitemaps including the default.
 
     MyApp::Application.routes.draw do
-      
+
+      root to: 'home#index'                   # default sitemap   /sitemap.xml
+      resources :faqs
+
       namespace :products do
 
         sitemap do                            # /products/sitemap.xml
-          namespace :video do
-            sitemap do                        # /products/video/sitemap.xml
-              sitemap :bluray do              # /products/video/bluray.xml
-                resources :blu_ray_players
-              end
-              
-              resources :dvd_players
-              resources :accessories
-            end
-          end
 
-          namespace :audio do
-            sitemap do                        # /products/audio/sitemap.xml
-              resources :head_phones
-              resources :speakers
-              resources :accessories
-            end
-          end
           resources :papers
           resources :pencils
+
+          namespace :audio do
+
+            sitemap do                        # /products/audio/sitemap.xml
+              resources :accessories
+              resources :head_phones
+              resources :speakers
+            end
+
+          end
+
+          namespace :video do
+
+            sitemap do                        # /products/video/sitemap.xml
+
+              resources :accessories
+              resources :dvd_players
+
+              sitemap :bluray do              # /products/video/bluray.xml
+                resources :bluray_players
+              end
+
+            end
+
+          end
+
         end
 
       end
 
-      root :to => 'home#index'                # included in the default sitemap: /sitemap.xml
-      resources :faqs
-
     end
 
+- The default sitemap includes the root url and FAQs.
 - Products sitemap includes paper and pencils.
+  - Products/audio includes head_phones, speakers, and accessories.
   - Products/video includes dvd_players and accessories.
   - Products/video/bluray includes blu_ray_players.  Notice that the sitemap block includes the name: bluray.  If we would have excluded the name,
     the routes within the block would have simply been added to /products/video/sitemap.xml and /products/video/bluray.xml would never be defined.
-  - Products/audio includes head_phones, speakers, and accessories.
-- The default sitemap includes the root url and FAQs.
 
 ### Nested Resources
-DuckMap provides support for nested resources, however, they could become a little tricky depending on your app.  The important thing
-to understand is that the target model object is ultimately responsible for providing the values required by any particular nested route.  The
-mechanism used to provide these values is: {DuckMap::SitemapObject#sitemap_capture_segments sitemap_capture_segments}.
+I think the easiest way to explain sitemaps with nested resources is to explain the process from a high level.
 
-The following configuration:
+When a sitemap is built:
+
+- The sitemap controller kicks in, builds a list of routes the sitemap should contain and loops through the routes.
+- for each route:
+  - automagically determine the controller and model used for the route.  if specified by the developer, use those values.
+  - ask the controller for all of the attributes for the url node.
+    - controller asks the model for attributes when building the actual canonical url for the node.
+    - model responds by populating a Hash with key/value pairs representing the segments of a route.
+
+Given the following configuration:
 
     MyApp::Application.routes.draw do
 
@@ -206,7 +222,13 @@ Would have a named route like:
 
     book_comment GET    /books/:book_id/comments/:id(.:format)      comments#show
 
-And could produce something similar to:
+The mechanism used to acquire these values is: sitemap_capture_segments.  You can see that the "show" action for the
+route has segment keys :book_id and :id. When the url is built, the Comment model is "asked" for the segment key values
+for the route by a call to sitemap_capture_segments.  The model is passed an Array containing all of the keys required
+to build the url for the named route.  In this case, the default behavior would be to ask the Comment model for
+:book_id and :id.
+
+The following is an example of the output that could be produced:
 
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
@@ -229,12 +251,8 @@ And could produce something similar to:
       </url>
     </urlset>
 
-You can see that the "show" action for the route has segment keys :book_id and :id.  When the url is built, the
-Comment model is "asked" for the segment key values for the route by a call to {DuckMap::SitemapObject#sitemap_capture_segments sitemap_capture_segments}.
-The model is passed an Array containing all of the keys required to build the url for the named route.  In this case,
-the default behavior would be to ask the Comment model for :book_id and :id.  If you are following Rails conventions,
-DuckMap should be able to pickup most nested routes.  However, we are not always afforded the luxury of adhering to
-all conventions.  Therefore, you have the option of defining segment key mappings.
+If you are following Rails conventions, DuckMap should be able to pickup most nested routes.  However, we are not always
+afforded the luxury of adhering to all conventions.  Therefore, you have the option of defining segment key mappings.
 
     class Comment < ActiveRecord::Base
 
@@ -242,8 +260,8 @@ all conventions.  Therefore, you have the option of defining segment key mapping
 
     end
 
-When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those values
-back to the real :book_id and :id when the url is built.
+When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those
+values back to the real :book_id and :id when the url is built.
 
 ### Route Filters
 Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the

@@ -228,58 +228,79 @@ five sitemaps including the default.</p>
 
 <pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
 
+  <span class='id identifier rubyid_root'>root</span> <span class='label'>to:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>home#index</span><span class='tstring_end'>'</span></span>                   <span class='comment'># default sitemap   /sitemap.xml
+</span>  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:faqs</span>
+
   <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:products</span> <span class='kw'>do</span>
 
     <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                            <span class='comment'># /products/sitemap.xml
-</span>      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:video</span> <span class='kw'>do</span>
-        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/video/sitemap.xml
-</span>          <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='symbol'>:bluray</span> <span class='kw'>do</span>              <span class='comment'># /products/video/bluray.xml
-</span>            <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:blu_ray_players</span>
-          <span class='kw'>end</span>
-
-          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:dvd_players</span>
-          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
-
-      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:audio</span> <span class='kw'>do</span>
-        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/audio/sitemap.xml
-</span>          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:head_phones</span>
-          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:speakers</span>
-          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
+</span>
       <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:papers</span>
       <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:pencils</span>
+
+      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:audio</span> <span class='kw'>do</span>
+
+        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/audio/sitemap.xml
+</span>          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:head_phones</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:speakers</span>
+        <span class='kw'>end</span>
+
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_namespace'>namespace</span> <span class='symbol'>:video</span> <span class='kw'>do</span>
+
+        <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='kw'>do</span>                        <span class='comment'># /products/video/sitemap.xml
+</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:accessories</span>
+          <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:dvd_players</span>
+
+          <span class='id identifier rubyid_sitemap'>sitemap</span> <span class='symbol'>:bluray</span> <span class='kw'>do</span>              <span class='comment'># /products/video/bluray.xml
+</span>            <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:bluray_players</span>
+          <span class='kw'>end</span>
+
+        <span class='kw'>end</span>
+
+      <span class='kw'>end</span>
+
     <span class='kw'>end</span>
 
   <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_root'>root</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>home#index</span><span class='tstring_end'>'</span></span>                <span class='comment'># included in the default sitemap: /sitemap.xml
-</span>  <span class='id identifier rubyid_resources'>resources</span> <span class='symbol'>:faqs</span>
 
 <span class='kw'>end</span>
 </code></pre>
 
 <ul>
+<li>The default sitemap includes the root url and FAQs.</li>
 <li>Products sitemap includes paper and pencils.
 
 <ul>
+<li>Products/audio includes head_phones, speakers, and accessories.</li>
 <li>Products/video includes dvd_players and accessories.</li>
 <li>Products/video/bluray includes blu_ray_players.  Notice that the sitemap block includes the name: bluray.  If we would have excluded the name,
 the routes within the block would have simply been added to /products/video/sitemap.xml and /products/video/bluray.xml would never be defined.</li>
-<li>Products/audio includes head_phones, speakers, and accessories.</li>
 </ul></li>
-<li>The default sitemap includes the root url and FAQs.</li>
 </ul>
 
 <h3>Nested Resources</h3>
 
-<p>DuckMap provides support for nested resources, however, they could become a little tricky depending on your app.  The important thing
-to understand is that the target model object is ultimately responsible for providing the values required by any particular nested route.  The
-mechanism used to provide these values is: <span class='object_link'><a href="DuckMap/SitemapObject.html#sitemap_capture_segments-instance_method" title="DuckMap::SitemapObject#sitemap_capture_segments (method)">sitemap_capture_segments</a></span>.</p>
+<p>I think the easiest way to explain sitemaps with nested resources is to explain the process from a high level.</p>
 
-<p>The following configuration:</p>
+<p>When a sitemap is built:</p>
+
+<ul>
+<li>The sitemap controller kicks in, builds a list of routes the sitemap should contain and loops through the routes.</li>
+<li>for each route:
+
+<ul>
+<li>automagically determine the controller and model used for the route.  if specified by the developer, use those values.</li>
+<li>ask the controller for all of the attributes for the url node.</li>
+<li>controller asks the model for attributes when building the actual canonical url for the node.</li>
+<li>model responds by populating a Hash with key/value pairs representing the segments of a route.</li>
+</ul></li>
+</ul>
+
+<p>Given the following configuration:</p>
 
 <pre class="code ruby"><code><span class='const'>MyApp</span><span class='op'>::</span><span class='const'>Application</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span> <span class='kw'>do</span>
 
@@ -295,7 +316,13 @@ mechanism used to provide these values is: <span class='object_link'><a href="Du
 <pre class="code ruby"><code>book_comment GET    /books/:book_id/comments/:id(.:format)      comments#show
 </code></pre>
 
-<p>And could produce something similar to:</p>
+<p>The mechanism used to acquire these values is: sitemap_capture_segments.  You can see that the &quot;show&quot; action for the
+route has segment keys :book_id and :id. When the url is built, the Comment model is &quot;asked&quot; for the segment key values
+for the route by a call to sitemap_capture_segments.  The model is passed an Array containing all of the keys required
+to build the url for the named route.  In this case, the default behavior would be to ask the Comment model for
+:book_id and :id.</p>
+
+<p>The following is an example of the output that could be produced:</p>
 
 <pre class="code ruby"><code>&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
   &lt;url&gt;
@@ -319,12 +346,8 @@ mechanism used to provide these values is: <span class='object_link'><a href="Du
 &lt;/urlset&gt;
 </code></pre>
 
-<p>You can see that the &quot;show&quot; action for the route has segment keys :book_id and :id.  When the url is built, the
-Comment model is &quot;asked&quot; for the segment key values for the route by a call to <span class='object_link'><a href="DuckMap/SitemapObject.html#sitemap_capture_segments-instance_method" title="DuckMap::SitemapObject#sitemap_capture_segments (method)">sitemap_capture_segments</a></span>.
-The model is passed an Array containing all of the keys required to build the url for the named route.  In this case,
-the default behavior would be to ask the Comment model for :book_id and :id.  If you are following Rails conventions,
-DuckMap should be able to pickup most nested routes.  However, we are not always afforded the luxury of adhering to
-all conventions.  Therefore, you have the option of defining segment key mappings.</p>
+<p>If you are following Rails conventions, DuckMap should be able to pickup most nested routes.  However, we are not always
+afforded the luxury of adhering to all conventions.  Therefore, you have the option of defining segment key mappings.</p>
 
 <pre class="code ruby"><code><span class='kw'>class</span> <span class='const'>Comment</span> <span class='op'>&lt;</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span>
 
@@ -333,8 +356,8 @@ all conventions.  Therefore, you have the option of defining segment key mapping
 <span class='kw'>end</span>
 </code></pre>
 
-<p>When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those values
-back to the real :book_id and :id when the url is built.</p>
+<p>When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those
+values back to the real :book_id and :id when the url is built.</p>
 
 <h3>Route Filters</h3>
 
@@ -583,7 +606,7 @@ it on the production server.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Feb 20 17:19:36 2013 by
+  Generated on Sat Feb 23 11:14:13 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
