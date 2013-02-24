@@ -106,6 +106,7 @@ module DuckMap
       end
 
       list.reject! {|route| route.path.spec =~ %r{/rails/info/properties|^/assets}}
+      list.reject! {|route| !route.is_available?}
 
       return list
     end

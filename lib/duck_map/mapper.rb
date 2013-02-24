@@ -125,13 +125,11 @@ module DuckMap
         # this is where the actual filtering of routes occurs and is based on the current sitemap filter settings.
         # if the route passes the criteria, then, it is "marked" as part of the sitemap.
         # no need to evaluate it every time a sitemap is requested.  evaluate it now and mark it.
-
-        if !@set.routes.routes[index].blank? && @set.routes.routes[index].sitemap_route_name.blank?
-          if @set.include_route?(@set.routes.routes[index]) && !sitemap_route_name.blank?
+        unless @set.routes.routes[index].blank?
+          if @set.routes.routes[index].sitemap_route_name.blank?
             @set.routes.routes[index].sitemap_route_name = sitemap_route_name
-            total += 1
-          else
-            @set.routes.routes[index].sitemap_route_name = "do_not_use"
+            @set.routes.routes[index].available = @set.include_route?(@set.routes.routes[index])
+            total += @set.routes.routes[index].is_available? ? 1 : 0
           end
         end
 
