@@ -187,8 +187,6 @@ define sitemaps and configure sitemap options.</p>
       <pre class="lines">
 
 
-123
-124
 125
 126
 127
@@ -207,10 +205,12 @@ define sitemaps and configure sitemap options.</p>
 140
 141
 142
-143</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run_filter'>run_filter</span><span class='lparen'>(</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_start_point'>start_point</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_total'>total</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -252,8 +252,14 @@ define sitemaps and configure sitemap options.</p>
     
 <p>Defines a sitemap for a Rails app.</p>
 
-<p>You can find a few examples and apps at: (<a
+<p>You can find a few examples and apps at:</p>
+<ul><li>
+<p>(<a
+href="http://www.jeffduckett.com/blog/11/defining-rails-3-x-sitemaps-using-duckmap.html">www.jeffduckett.com/blog/11/defining-rails-3-x-sitemaps-using-duckmap.html</a>)</p>
+</li><li>
+<p>(<a
 href="http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html">www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html</a>)</p>
+</li></ul>
 
 
   </div>
@@ -280,8 +286,6 @@ href="http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html">www.
       <pre class="lines">
 
 
-19
-20
 21
 22
 23
@@ -381,10 +385,12 @@ href="http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html">www.
 117
 118
 119
-120</pre>
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap'>sitemap</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='symbol'>:sitemap</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='id identifier rubyid_options'>options</span>
@@ -498,7 +504,7 @@ href="http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html">www.
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 15:09:17 2013 by
+  Generated on Tue Feb 26 15:13:24 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

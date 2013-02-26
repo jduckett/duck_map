@@ -13,7 +13,9 @@ module DuckMap
     # Defines a sitemap for a Rails app.
     #
     #
-    # You can find a few examples and apps at: (http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html)
+    # You can find a few examples and apps at:
+    # - (http://www.jeffduckett.com/blog/11/defining-rails-3-x-sitemaps-using-duckmap.html)
+    # - (http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html)
     #
     # @return [Nil]
     def sitemap(name = :sitemap, options = {}, &block)

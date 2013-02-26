@@ -196,6 +196,8 @@ five sitemaps including the default.
   - Products/video/bluray includes blu_ray_players.  Notice that the sitemap block includes the name: bluray.  If we would have excluded the name,
     the routes within the block would have simply been added to /products/video/sitemap.xml and /products/video/bluray.xml would never be defined.
 
+You can find more information and demo apps at: (http://www.jeffduckett.com/blog/13/sitemaps-with-namespaces.html)
+
 ### Nested Resources
 I think the easiest way to explain sitemaps with nested resources is to explain the process from a high level.
 
@@ -262,6 +264,8 @@ afforded the luxury of adhering to all conventions.  Therefore, you have the opt
 
 When the url is built, the model object will be asked to provide values for: :my_book_id and :id and map those
 values back to the real :book_id and :id when the url is built.
+
+You can find more information and demo apps at: (http://www.jeffduckett.com/blog/14/sitemaps-and-nested-resources-using-duckmap.html)
 
 ### Route Filters
 Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the
