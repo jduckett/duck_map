@@ -56,7 +56,6 @@ class RouteFilterTest < ActiveSupport::TestCase
 
     routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
 
-    # this one will pass cuz it does not have a verb_symbol.  not going to investigate why
     assert routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
     assert !routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
     assert !routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
@@ -91,7 +90,6 @@ class RouteFilterTest < ActiveSupport::TestCase
 
     routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
 
-    # this one will pass cuz it does not have a verb_symbol.  not going to investigate why
     assert routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
     assert routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
     assert routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
@@ -100,6 +98,128 @@ class RouteFilterTest < ActiveSupport::TestCase
     assert !routes.find {|x| x.name.eql?("book")}.kind_of?(Journey::Route)
     assert !routes.find {|x| x.name.eql?("books")}.kind_of?(Journey::Route)
     assert !routes.find {|x| x.name.eql?("new_book")}.kind_of?(Journey::Route)
+
+  end
+
+  ##################################################################################
+  test "exclude route name: root" do
+
+    DevCom::Application.routes.routes.clear
+    DevCom::Application.routes.sitemap_filters.reset
+
+    DevCom::Application.routes.draw do
+
+      exclude_names :root
+      sitemap
+
+      root to: 'home#index'
+      resources :faqs
+      resources :books
+
+    end
+
+    sitemap_route = DevCom::Application.routes.find_route_via_path("/sitemap.xml")
+    assert sitemap_route.kind_of?(Journey::Route)
+
+    routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
+
+    assert !routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("book")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("books")}.kind_of?(Journey::Route)
+
+  end
+
+  ##################################################################################
+  test "exclude controller name: book" do
+
+    DevCom::Application.routes.routes.clear
+    DevCom::Application.routes.sitemap_filters.reset
+
+    DevCom::Application.routes.draw do
+
+      exclude_controllers :books, :trucks
+      sitemap
+
+      root to: 'home#index'
+      resources :faqs
+      resources :books
+      resources :trucks
+
+    end
+
+    sitemap_route = DevCom::Application.routes.find_route_via_path("/sitemap.xml")
+    assert sitemap_route.kind_of?(Journey::Route)
+
+    routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
+
+    assert routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("book")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("books")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("truck")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("trucks")}.kind_of?(Journey::Route)
+
+  end
+
+  ##################################################################################
+  test "exclude action :show override directly on the route" do
+
+    DevCom::Application.routes.routes.clear
+    DevCom::Application.routes.sitemap_filters.reset
+
+    DevCom::Application.routes.draw do
+
+      exclude_actions :show
+      sitemap
+
+      root to: 'home#index'
+      resources :faqs
+      resources :books, include_actions: :show
+
+    end
+
+    sitemap_route = DevCom::Application.routes.find_route_via_path("/sitemap.xml")
+    assert sitemap_route.kind_of?(Journey::Route)
+
+    routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
+
+    assert routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("book")}.kind_of?(Journey::Route)
+    assert routes.find {|x| x.name.eql?("books")}.kind_of?(Journey::Route)
+
+  end
+
+  ##################################################################################
+  test "exclude everything via clearing all filters" do
+
+    DevCom::Application.routes.routes.clear
+    DevCom::Application.routes.sitemap_filters.clear_filters
+
+    DevCom::Application.routes.draw do
+
+      sitemap
+
+      root to: 'home#index'
+      resources :faqs
+      resources :books
+
+    end
+
+    sitemap_route = DevCom::Application.routes.find_route_via_path("/sitemap.xml")
+    assert sitemap_route.kind_of?(Journey::Route)
+
+    routes = DevCom::Application.routes.sitemap_routes(sitemap_route)
+
+    assert !routes.find {|x| x.name.eql?("root")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("faq")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("faqs")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("book")}.kind_of?(Journey::Route)
+    assert !routes.find {|x| x.name.eql?("books")}.kind_of?(Journey::Route)
 
   end
 
