@@ -1,4 +1,3 @@
-# DONE
 require 'active_support/concern'
 
 module DuckMap

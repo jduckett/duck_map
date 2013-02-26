@@ -69,6 +69,8 @@ module DuckMap
       ActionController::Base.send :include, Attributes
       ActionController::Base.send :include, ControllerHelpers
       ActionController::Base.send :include, Handlers::Base
+      ActionController::Base.send :include, Handlers::Edit
+      ActionController::Base.send :include, Handlers::New
       ActionController::Base.send :include, Handlers::Index
       ActionController::Base.send :include, Handlers::Show
       ActionController::Base.send :include, Model

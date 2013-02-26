@@ -1,4 +1,3 @@
-# DONE i think.  need to proof read and re-verify
 require 'active_support/concern'
 
 module DuckMap

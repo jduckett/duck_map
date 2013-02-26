@@ -8,16 +8,6 @@ module DuckMap
       extend ActiveSupport::Concern
 
       ##################################################################################
-      def sitemap_new(options = {})
-        return []
-      end
-
-      ##################################################################################
-      def sitemap_edit(options = {})
-        return []
-      end
-
-      ##################################################################################
       # Default handler method for index actions.
       #
       # The source of a request for data can be from two sources.

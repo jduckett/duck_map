@@ -1,4 +1,3 @@
-# DONE
 module DuckMap
 
   # Logger class generates logging information in log/duckmap.log

@@ -20,6 +20,8 @@ module DuckMap
   ##################################################################################
   # Mixin module for ActionDispatch::Routing::RouteSet.  This module is responsible for evaluating each route
   # for consideration to be included in a sitemap.
+  #
+  # You can find a few examples and apps at: (http://www.jeffduckett.com/blog/15/route-filters.html)
   module RouteFilter
     extend ActiveSupport::Concern
 

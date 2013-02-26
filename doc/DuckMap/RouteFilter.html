@@ -95,6 +95,9 @@
 responsible for evaluating each route for consideration to be included in a
 sitemap.</p>
 
+<p>You can find a few examples and apps at: (<a
+href="http://www.jeffduckett.com/blog/15/route-filters.html">www.jeffduckett.com/blog/15/route-filters.html</a>)</p>
+
 
   </div>
 </div>
@@ -283,12 +286,12 @@ names.</p>
       <pre class="lines">
 
 
-27
-28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blank_route_name'>blank_route_name</span>
   <span class='ivar'>@blank_route_name</span>
@@ -345,12 +348,12 @@ names.</p>
       <pre class="lines">
 
 
-32
-33
-34</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blank_route_name?'>blank_route_name?</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blank_route_name'>blank_route_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blank_route_name'>blank_route_name</span>
@@ -404,8 +407,6 @@ names.</p>
       <pre class="lines">
 
 
-46
-47
 48
 49
 50
@@ -510,10 +511,12 @@ names.</p>
 149
 150
 151
-152</pre>
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_route?'>include_route?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -714,8 +717,6 @@ argument, otherwise, false.</p>
       <pre class="lines">
 
 
-159
-160
 161
 162
 163
@@ -741,10 +742,12 @@ argument, otherwise, false.</p>
 183
 184
 185
-186</pre>
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
@@ -818,12 +821,12 @@ argument, otherwise, false.</p>
       <pre class="lines">
 
 
-39
-40
-41</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span>
   <span class='kw'>return</span> <span class='ivar'>@sitemap_filters</span> <span class='op'>||=</span> <span class='const'>FilterStack</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -838,7 +841,7 @@ argument, otherwise, false.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Feb 25 20:46:08 2013 by
+  Generated on Tue Feb 26 14:44:56 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

@@ -1,4 +1,3 @@
-# DONE
 module DuckMap
 
   # This is a small helper used to ensure values in an Array of are a certain type.

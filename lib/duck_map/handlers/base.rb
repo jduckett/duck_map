@@ -3,6 +3,8 @@ require 'active_support/concern'
 module DuckMap
   module Handlers
 
+    autoload :Edit, "duck_map/handlers/edit"
+    autoload :New, "duck_map/handlers/new"
     autoload :Index, "duck_map/handlers/index"
     autoload :Show, "duck_map/handlers/show"
 
