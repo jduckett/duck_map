@@ -130,7 +130,7 @@ module DuckMap
       #   @option options [Symbol] :keywords            Default value: :keywords
       #   @option options [Symbol] :lastmod             Default value: :updated_at
       #   @option options [Symbol] :priority            Valid static values range from 0.0 to 1.0
-      #   @option options [Symbol] :segments            Sub-hash containing attributes for the segments.  See {#segments_handler segments_handler}
+      #   @option options [Symbol] :segments            Sub-hash containing attributes for the segments.  See {#sitemap_segments sitemap_segments}
       #   @option options [Symbol] :title               Default value: :title
       #   @option options [Symbol] :url_format          Default value: "html"
       #   @option options [Symbol] :url_limit           Default value: 50000
@@ -328,7 +328,7 @@ module DuckMap
     # - :my_title is a Symbol, however, a matching attribute/method does NOT exist on the target object, so,
     #   it is ignored and not included in the returning Hash.
     #
-    # @param [Hash] options                  Options hash. Can be any combination of key/value pairs (one-dimensional).
+    # @param [Hash] attributes Options hash. Can be any combination of key/value pairs (one-dimensional).
     # return [Hash]
     def sitemap_capture_attributes(attributes = {})
       values = {}

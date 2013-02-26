@@ -4,8 +4,8 @@ module DuckMap
 
   ##################################################################################
   # This module has a single purpose.  To declare a class-level attribute using the Rails class_attribute method.
-  # Also, we are using {ActiveSupport::Concern} and the included block.  This module is included in
-  # {ActionController::Base}, so, every controller object will have the attribute.
+  # Also, we are using ActiveSupport::Concern and the included block.  This module is included in
+  # ActionController::Base, so, every controller object will have the attribute.
   #
   # See {DuckMap::Attributes::ClassMethods#sitemap_attributes} for an explanation.
   module InheritableClassAttributes

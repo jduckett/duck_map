@@ -10,13 +10,12 @@ module DuckMap
     ##################################################################################
     # View helper method to generate the content of a sitemap.  Loops through all of the current
     # Hashes contained in {DuckMap::Model#sitemap_model}.
-    # @param [Block] A block to execute for each row contained in {DuckMap::Model#sitemap_model}.
-    #
     #
     # To see it in action, have a look at the file.
     #
     # /app/views/sitemap/default_template.xml.erb
     #
+    # @param [Block] block A block to execute for each row contained in {DuckMap::Model#sitemap_model}.
     # @return [NilClass]
     def sitemap_content(&block)
 

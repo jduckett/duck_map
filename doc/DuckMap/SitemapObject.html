@@ -266,11 +266,13 @@ Hash.</p>
   
     <li>
       
-        <span class='name'>options</span>
+        <span class='name'>attributes</span>
       
       
         <span class='type'>(<tt>Hash</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
         &mdash;
@@ -289,6 +291,7 @@ Hash.</p>
       <pre class="lines">
 
 
+333
 334
 335
 336
@@ -320,11 +323,10 @@ Hash.</p>
 362
 363
 364
-365
-366</pre>
+365</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/sitemap_object.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/sitemap_object.rb', line 333</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_capture_attributes'>sitemap_capture_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -491,6 +493,7 @@ attributes.</p>
       <pre class="lines">
 
 
+424
 425
 426
 427
@@ -523,11 +526,10 @@ attributes.</p>
 454
 455
 456
-457
-458</pre>
+457</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/sitemap_object.rb', line 425</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/sitemap_object.rb', line 424</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_capture_segments'>sitemap_capture_segments</span><span class='lparen'>(</span><span class='id identifier rubyid_segment_mappings'>segment_mappings</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_segments'>segments</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -573,7 +575,7 @@ attributes.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 14:44:56 2013 by
+  Generated on Tue Feb 26 15:09:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

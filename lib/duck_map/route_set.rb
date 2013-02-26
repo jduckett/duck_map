@@ -10,8 +10,8 @@ module DuckMap
 
     ##################################################################################
     # Builds a list of routes associated with a sitemap.  The actual list of routes returned is based
-    # on {DuckMap::Sitemap::Route::InstanceMethods#sitemap_route_name sitemap_route_name}, which is the named route of the sitemap.
-    # @note See {DuckMap::Sitemap::Mapper::InstanceMethods#sitemap} for a full explanation of how to define a sitemap and how those rules affect this method.
+    # on {DuckMap::Route#sitemap_route_name sitemap_route_name}, which is the named route of the sitemap.
+    # @note See {DuckMap::Mapper#sitemap} for a full explanation of how to define a sitemap and how those rules affect this method.
     # @param [String] name_or_path  The request.path of the current sitemap url or the name assigned to the sitemap via config/routes.rb.
     # @return [Array]
     def find_sitemap_route(name_or_path)
@@ -35,9 +35,9 @@ module DuckMap
 
     ##################################################################################
     # Builds a list of routes associated with a sitemap route.  The actual list of routes returned is based
-    # on {DuckMap::Sitemap::Route::InstanceMethods#sitemap_route_name sitemap_route_name}, which is the named
+    # on {DuckMap::Route#sitemap_route_name sitemap_route_name}, which is the named
     # route of the sitemap.
-    # @note See {DuckMap::Sitemap::Mapper::InstanceMethods#sitemap} for a full explanation of how to define a sitemap and how those rules affect this method.
+    # @note See {DuckMap::Mapper#sitemap} for a full explanation of how to define a sitemap and how those rules affect this method.
     # @param [String] sitemap_route A sitemap route.
     # @return [Array]
     def sitemap_routes(sitemap_route)

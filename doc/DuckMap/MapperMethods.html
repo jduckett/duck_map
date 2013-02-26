@@ -121,7 +121,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>See blank_route_name.</p>
+<p>See <span class='object_link'><a href="RouteFilter.html#blank_route_name-instance_method" title="DuckMap::RouteFilter#blank_route_name (method)">blank_route_name</a></span>.</p>
 </div></span>
   
 </li>
@@ -391,7 +391,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>See blank_route_name</p>
+<p>See <span class='object_link'><a href="RouteFilter.html#blank_route_name-instance_method" title="DuckMap::RouteFilter#blank_route_name (method)">blank_route_name</a></span></p>
 
 
   </div>
@@ -405,12 +405,12 @@
       <pre class="lines">
 
 
-149
-150
-151</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_blank_route_name'>allow_blank_route_name</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_blank_route_name'>blank_route_name</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -435,12 +435,12 @@
       <pre class="lines">
 
 
-159
-160
-161</pre>
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear_filter'>clear_filter</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_clear_filter'>clear_filter</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -465,12 +465,12 @@
       <pre class="lines">
 
 
-154
-155
-156</pre>
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear_filters'>clear_filters</span>
   <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_clear_filters'>clear_filters</span>
@@ -495,13 +495,13 @@
       <pre class="lines">
 
 
-164
-165
-166
-167</pre>
+168
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exclude_actions'>exclude_actions</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:actions</span><span class='rparen'>)</span>
@@ -527,13 +527,13 @@
       <pre class="lines">
 
 
-170
-171
-172
-173</pre>
+174
+175
+176
+177</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exclude_controllers'>exclude_controllers</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:controllers</span><span class='rparen'>)</span>
@@ -559,13 +559,13 @@
       <pre class="lines">
 
 
-176
-177
-178
-179</pre>
+180
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exclude_names'>exclude_names</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:names</span><span class='rparen'>)</span>
@@ -591,13 +591,13 @@
       <pre class="lines">
 
 
-182
-183
-184
-185</pre>
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exclude_verbs'>exclude_verbs</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:verbs</span><span class='rparen'>)</span>
@@ -623,13 +623,13 @@
       <pre class="lines">
 
 
-188
-189
-190
-191</pre>
+192
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 188</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_actions'>include_actions</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:actions</span><span class='rparen'>)</span>
@@ -655,13 +655,13 @@
       <pre class="lines">
 
 
-194
-195
-196
-197</pre>
+198
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 194</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_controllers'>include_controllers</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:controllers</span><span class='rparen'>)</span>
@@ -687,13 +687,13 @@
       <pre class="lines">
 
 
-200
-201
-202
-203</pre>
+204
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_names'>include_names</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:names</span><span class='rparen'>)</span>
@@ -719,13 +719,13 @@
       <pre class="lines">
 
 
-206
-207
-208
-209</pre>
+210
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_verbs'>include_verbs</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:verbs</span><span class='rparen'>)</span>
@@ -751,12 +751,12 @@
       <pre class="lines">
 
 
-212
-213
-214</pre>
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset_filters'>reset_filters</span>
   <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span>
@@ -771,7 +771,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 14:44:55 2013 by
+  Generated on Tue Feb 26 15:09:17 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

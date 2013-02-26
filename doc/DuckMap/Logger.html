@@ -809,15 +809,15 @@
       <pre class="lines">
 
 
+85
 86
 87
 88
 89
-90
-91</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_full_exception'>full_exception</span>
   <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='cvar'>@@full_exception</span><span class='rparen'>)</span>
@@ -845,13 +845,13 @@
       <pre class="lines">
 
 
+75
 76
 77
-78
-79</pre>
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_full_exception='>full_exception=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='cvar'>@@full_exception</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -899,12 +899,12 @@
       <pre class="lines">
 
 
+117
 118
-119
-120</pre>
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_show_console?'>is_show_console?</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_console'>show_console</span>
@@ -953,13 +953,13 @@
       <pre class="lines">
 
 
+65
 66
 67
-68
-69</pre>
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_log_level'>log_level</span>
   <span class='cvar'>@@log_level</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
@@ -1031,6 +1031,7 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+48
 49
 50
 51
@@ -1038,11 +1039,10 @@ UNKNOWN</p>
 53
 54
 55
-56
-57</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_log_level='>log_level=</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_severity'>to_severity</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1084,13 +1084,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+21
 22
 23
-24
-25</pre>
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
   <span class='id identifier rubyid_dir'>dir</span> <span class='op'>=</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Rails</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
@@ -1116,15 +1116,15 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+106
 107
 108
 109
 110
-111
-112</pre>
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_console'>show_console</span>
   <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='cvar'>@@show_console</span><span class='rparen'>)</span>
@@ -1152,12 +1152,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+113
 114
-115
-116</pre>
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_console='>show_console=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='cvar'>@@show_console</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1216,15 +1216,15 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+31
 32
 33
 34
 35
-36
-37</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_severity'>to_severity</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Fixnum</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>:</span> <span class='symbol'>:badkey</span>
@@ -1258,14 +1258,14 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+185
 186
 187
 188
-189
-190</pre>
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='comma'>,</span> <span class='id identifier rubyid_bold'>bold</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_color'>color</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_color'>color</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
@@ -1292,16 +1292,16 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+97
 98
 99
 100
 101
 102
-103
-104</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_console'>console</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_show_console?'>is_show_console?</span>
@@ -1330,13 +1330,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+149
 150
 151
-152
-153</pre>
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>DEBUG</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>CYAN</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1362,13 +1362,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+155
 156
 157
-158
-159</pre>
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>ERROR</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>RED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1394,6 +1394,7 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+134
 135
 136
 137
@@ -1405,11 +1406,10 @@ UNKNOWN</p>
 143
 144
 145
-146
-147</pre>
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exception'>exception</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 
@@ -1444,13 +1444,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+161
 162
 163
-164
-165</pre>
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fatal'>fatal</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>FATAL</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>RED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1476,12 +1476,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+92
 93
-94
-95</pre>
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_full_exception'>full_exception</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_full_exception'>full_exception</span>
@@ -1506,12 +1506,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+80
 81
-82
-83</pre>
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_full_exception='>full_exception=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_full_exception'>full_exception</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1536,13 +1536,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+167
 168
 169
-170
-171</pre>
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>INFO</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1590,12 +1590,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+129
 130
-131
-132</pre>
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_show_console?'>is_show_console?</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_show_console?'>is_show_console?</span>
@@ -1620,12 +1620,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_level'>log_level</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_log_level'>log_level</span>
@@ -1650,12 +1650,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+58
 59
-60
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_level='>log_level=</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_log_level'>log_level</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -1680,12 +1680,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+121
 122
-123
-124</pre>
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_console'>show_console</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_show_console'>show_console</span>
@@ -1710,12 +1710,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+125
 126
-127
-128</pre>
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_console='>show_console=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_show_console'>show_console</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1740,12 +1740,12 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+38
 39
-40
-41</pre>
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_severity'>to_severity</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_to_severity'>to_severity</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1770,13 +1770,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+179
 180
 181
-182
-183</pre>
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unknown'>unknown</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>INFO</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>WHITE</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1802,13 +1802,13 @@ UNKNOWN</p>
       <pre class="lines">
 
 
+173
 174
 175
-176
-177</pre>
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/logger.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>WARN</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>YELLOW</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_progname'>progname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1824,7 +1824,7 @@ UNKNOWN</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 14:44:56 2013 by
+  Generated on Tue Feb 26 15:09:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

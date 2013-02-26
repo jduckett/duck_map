@@ -268,12 +268,12 @@ defined any attributes.</p>
       <pre class="lines">
 
 
+110
 111
-112
-113</pre>
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_sitemap_attributes_defined?'>is_sitemap_attributes_defined?</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_is_sitemap_attributes_defined?'>is_sitemap_attributes_defined?</span>
@@ -326,6 +326,7 @@ attributes for a given action name on a controller.</p>
       <pre class="lines">
 
 
+122
 123
 124
 125
@@ -337,11 +338,10 @@ attributes for a given action name on a controller.</p>
 131
 132
 133
-134
-135</pre>
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_attributes'>sitemap_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='symbol'>:default</span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -412,6 +412,7 @@ Hash stripped of key/value pairs where the value is another Hash.</p>
       <pre class="lines">
 
 
+152
 153
 154
 155
@@ -436,11 +437,10 @@ Hash stripped of key/value pairs where the value is another Hash.</p>
 174
 175
 176
-177
-178</pre>
+177</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/attributes.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_stripped_attributes'>sitemap_stripped_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -478,7 +478,7 @@ Hash stripped of key/value pairs where the value is another Hash.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 14:44:55 2013 by
+  Generated on Tue Feb 26 15:09:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

@@ -8,7 +8,7 @@ module DuckMap
     # Parses a DateTime represented as a String into a DateTime value.  If value is String, then, it is parsed
     # and returns a DateTime Object if valid.  Otherwise, it returns nil.  If the value passed is a Date, Time, or DateTime, then,
     # it is returned as is.
-    # @param [String] A DateTime represented as a String to parse or can be a Date, Time, or DateTime value.
+    # @param [String] value A DateTime represented as a String to parse or can be a Date, Time, or DateTime value.
     # @return [DateTime] DateTime value.
     def self.to_date(value)
       date_value = nil

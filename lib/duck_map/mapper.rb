@@ -11,6 +11,10 @@ module DuckMap
 
     ##################################################################################
     # Defines a sitemap for a Rails app.
+    #
+    #
+    # You can find a few examples and apps at: (http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html)
+    #
     # @return [Nil]
     def sitemap(name = :sitemap, options = {}, &block)
       options = name.kind_of?(Hash) ? name : options
@@ -145,7 +149,7 @@ module DuckMap
     extend ActiveSupport::Concern
 
     ##################################################################################
-    # See {DuckMap::Sitemap::RouteFilter::InstanceMethods#blank_route_name blank_route_name}
+    # See {DuckMap::RouteFilter#blank_route_name blank_route_name}
     def allow_blank_route_name(value)
       @set.blank_route_name = value
     end

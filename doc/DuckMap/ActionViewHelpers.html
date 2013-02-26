@@ -427,12 +427,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-89
-90
-91</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_canonical'>sitemap_meta_canonical</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:canonical</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_tag'>tag</span><span class='lparen'>(</span><span class='symbol'>:link</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>rel:</span> <span class='symbol'>:canonical</span><span class='comma'>,</span> <span class='label'>href:</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:canonical</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -457,12 +457,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-93
-94
-95</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_canonical='>sitemap_meta_canonical=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:canonical</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -516,12 +516,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-67
-68
-69</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_description'>sitemap_meta_description</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_tag'>tag</span><span class='lparen'>(</span><span class='symbol'>:meta</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>name:</span> <span class='symbol'>:description</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -546,12 +546,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-71
-72
-73</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_description='>sitemap_meta_description=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -605,12 +605,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-56
-57
-58</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_keywords'>sitemap_meta_keywords</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:keywords</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_tag'>tag</span><span class='lparen'>(</span><span class='symbol'>:meta</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>name:</span> <span class='symbol'>:keywords</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:keywords</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -635,12 +635,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-60
-61
-62</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_keywords='>sitemap_meta_keywords=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:keywords</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -694,12 +694,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-78
-79
-80</pre>
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_lastmod'>sitemap_meta_lastmod</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:lastmod</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_tag'>tag</span><span class='lparen'>(</span><span class='symbol'>:meta</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Last-Modified</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>content:</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:lastmod</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -724,12 +724,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-82
-83
-84</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_lastmod='>sitemap_meta_lastmod=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:lastmod</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -784,13 +784,13 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
+98
+99
 100
-101
-102
-103</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_tag'>sitemap_meta_tag</span>
   <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_title'>sitemap_meta_title</span><span class='rbrace'>}</span><span class='tstring_content'>\r\n    </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_keywords'>sitemap_meta_keywords</span><span class='rbrace'>}</span><span class='tstring_content'>\r\n    </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_description'>sitemap_meta_description</span><span class='rbrace'>}</span><span class='tstring_content'>\r\n    </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_lastmod'>sitemap_meta_lastmod</span><span class='rbrace'>}</span><span class='tstring_content'>\r\n    </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_canonical'>sitemap_meta_canonical</span><span class='rbrace'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_html_safe'>html_safe</span>
@@ -845,12 +845,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_title'>sitemap_meta_title</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:title</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_content_tag'>content_tag</span><span class='lparen'>(</span><span class='symbol'>:title</span><span class='comma'>,</span> <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:title</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -875,12 +875,12 @@ use inside HTML header area.</p>
       <pre class="lines">
 
 
-49
-50
-51</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/view_helpers.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_meta_title='>sitemap_meta_title=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_controller'>controller</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_meta_data'>sitemap_meta_data</span><span class='lbracket'>[</span><span class='symbol'>:title</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -895,7 +895,7 @@ use inside HTML header area.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 26 14:44:56 2013 by
+  Generated on Tue Feb 26 15:09:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
