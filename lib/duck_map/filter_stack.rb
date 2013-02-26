@@ -6,9 +6,8 @@ module DuckMap
   ##################################################################################
   class FilterStack
 
-    #DEFAULT_FILTER = {actions: [:new, :create, :edit, :update, :destroy],
-                        #verbs: [:post, :put, :delete], names: [], controllers: []}
-    DEFAULT_FILTER = {actions: [:index, :show], verbs: [], names: [], controllers: []}
+    DEFAULT_FILTER = {exclude: {actions: [], controllers: [], names: [], verbs: [:delete, :post, :put]},
+                      include: {actions: [:index, :show], controllers: [], names: [], verbs: []}}
 
     ##################################################################################
     def initialize
@@ -41,10 +40,16 @@ module DuckMap
     # Copies a filter
     # @return [Hash]
     def copy_filter(filter)
-      buffer = {}
-      filter.each do |part|
-        buffer[part[0]] = part[1].dup
+      buffer = {exclude: {}, include: {}}
+
+      filter[:exclude].each do |part|
+        buffer[:exclude][part[0]] = part[1].dup
       end
+
+      filter[:include].each do |part|
+        buffer[:include][part[0]] = part[1].dup
+      end
+
       return buffer
     end
 
@@ -77,6 +82,37 @@ module DuckMap
       self.stack.pop
       self.stack.push(value)
       return nil
+    end
+
+    ##################################################################################
+    # Clears all types (:actions, :verbs, :names, :controllers) for the {#current_filter}.
+    # @return [Nil]
+    def clear_filters
+      self.current_filter = {exclude: {actions: [], verbs: [], names: [], controllers: []},
+                              include: {actions: [], verbs: [], names: [], controllers: []}}
+      return nil
+    end
+
+    ##################################################################################
+    # Clears a single type of filter.
+    # @param [Symbol]        section  The section of filter to update. :exclude or :include.
+    # @param [Symbol]        key      The key of filter to update. :actions, :verbs, :names, :controllers.
+    # @return [Nil]
+    def clear_filter(section, key)
+      key = key.kind_of?(Symbol) ? key : key.to_sym
+      self.current_filter[section][key] = []
+      return nil
+    end
+
+    ##################################################################################
+    # Removes value(s) from the {#current_filter}.  Basically, the opposite of {#include_filter}.
+    # @overload exclude_filter(key, value)
+    #   @param [Symbol, String]        key    The type of filter to update. :actions, :verbs, :names, :controllers.
+    #   @param [String, Symbol, Array] value  A single or Array of items to be added to the filter section specified via key.
+    # @return [NilClass]
+    def exclude_filter(*args)
+      args.insert(0, :exclude)
+      return update_filter(*args)
     end
 
     ##################################################################################
@@ -152,47 +188,28 @@ module DuckMap
         end
       end
 
-      if action == :include
+      self.current_filter[action][key].concat(list)
+      self.current_filter[action][key].uniq!
 
-        # now, simply concatenate the resulting list and make sure the final array is unique
-        self.current_filter[key].concat(list)
-        self.current_filter[key].uniq!
+      opposite_action = action.eql?(:exclude) ? :include : :exclude
 
-      elsif action == :exclude
-
-        self.current_filter[key].reject! {|item| list.include?(item)}
-
+      self.current_filter[action][key].each do |value|
+#puts "action: #{action} key: #{key} value: #{value}"
+        self.current_filter[opposite_action][key].delete(value)
       end
 
-      return nil
-    end
+      #if action == :include
 
-    ##################################################################################
-    # Removes value(s) from the {#current_filter}.  Basically, the opposite of {#include_filter}.
-    # @overload exclude_filter(key, value)
-    #   @param [Symbol, String]        key    The type of filter to update. :actions, :verbs, :names, :controllers.
-    #   @param [String, Symbol, Array] value  A single or Array of items to be added to the filter section specified via key.
-    # @return [NilClass]
-    def exclude_filter(*args)
-      args.insert(0, :exclude)
-      return update_filter(*args)
-    end
+        ## now, simply concatenate the resulting list and make sure the final array is unique
+        #self.current_filter[key].concat(list)
+        #self.current_filter[key].uniq!
 
-    ##################################################################################
-    # Clears all types (:actions, :verbs, :names, :controllers) for the {#current_filter}.
-    # @return [Nil]
-    def clear_filters
-      self.current_filter = {actions: [], verbs: [], names: [], controllers: []}
-      return nil
-    end
+      #elsif action == :exclude
 
-    ##################################################################################
-    # Clears a single type of filter.
-    # @param [Symbol, String]        key    The type of filter to update. :actions, :verbs, :names, :controllers.
-    # @return [Nil]
-    def clear_filter(key)
-      key = key.kind_of?(Symbol) ? key : key.to_sym
-      self.current_filter[key] = []
+        #self.current_filter[key].reject! {|item| list.include?(item)}
+
+      #end
+
       return nil
     end
 

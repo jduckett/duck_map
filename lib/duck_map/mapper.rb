@@ -156,8 +156,8 @@ module DuckMap
     end
 
     ##################################################################################
-    def clear_filter(key)
-      @set.sitemap_filters.clear_filter(key)
+    def clear_filter(section, key)
+      @set.sitemap_filters.clear_filter(section, key)
     end
 
     ##################################################################################

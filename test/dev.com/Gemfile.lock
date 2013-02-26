@@ -1,7 +1,7 @@
 PATH
   remote: /alldata/git/rails/gems/duck_map
   specs:
-    duck_map (0.8.1)
+    duck_map (0.8.3)
       highline
 
 GEM

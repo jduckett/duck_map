@@ -1,10 +1,3 @@
-# the rule is the filter criteria acts as a list of things to include.  period.
-# include methods will add to the list of criteria to include.
-# exclude methods will remove from the list of criteria to include.
-# for route level evaluations, the list of criteria to include is empty.  therefore, meaning nothing is included.
-# the include attributes are added to the list of criteria to include, then, the exclude attributes are processed
-# to remove attributes from the list of criteria to include.
-# this will match the default behavior of nothing being included unless explicitly included.
 require 'active_support/concern'
 
 module DuckMap
@@ -90,19 +83,35 @@ module DuckMap
 
           end
 
-          if match_any?(route.action_name, self.sitemap_filters.current_filter[:actions])
+          if match_any?(route.action_name, self.sitemap_filters.current_filter[:exclude][:actions])
+            raise ExplicitExclude, "exclude"
+          end
+
+          if match_any?(route.verb_symbol, self.sitemap_filters.current_filter[:exclude][:verbs])
+            raise ExplicitExclude, "exclude"
+          end
+
+          if match_any?(route.controller_name, self.sitemap_filters.current_filter[:exclude][:controllers])
+            raise ExplicitExclude, "exclude"
+          end
+
+          if match_any?(route.name, self.sitemap_filters.current_filter[:exclude][:names])
+            raise ExplicitExclude, "exclude"
+          end
+
+          if match_any?(route.action_name, self.sitemap_filters.current_filter[:include][:actions])
             raise ExplicitInclude, "include"
           end
 
-          if match_any?(route.verb_symbol, self.sitemap_filters.current_filter[:verbs])
+          if match_any?(route.verb_symbol, self.sitemap_filters.current_filter[:include][:verbs])
             raise ExplicitInclude, "include"
           end
 
-          if match_any?(route.controller_name, self.sitemap_filters.current_filter[:controllers])
+          if match_any?(route.controller_name, self.sitemap_filters.current_filter[:include][:controllers])
             raise ExplicitInclude, "include"
           end
 
-          if match_any?(route.name, self.sitemap_filters.current_filter[:names])
+          if match_any?(route.name, self.sitemap_filters.current_filter[:include][:names])
             raise ExplicitInclude, "include"
           end
 
@@ -121,6 +130,9 @@ module DuckMap
         rescue DuckmapInclude => e
           DuckMap.logger.debug %(#{"Duckmap Include".rjust(30)} -> #{e})
           value = true
+
+        rescue ExplicitExclude => e
+          DuckMap.logger.debug %(#{"Explicit Exclude".rjust(30)} -> #{e})
 
         rescue ExplicitInclude => e
           DuckMap.logger.debug %(#{"Explicit Include".rjust(30)} -> #{e})

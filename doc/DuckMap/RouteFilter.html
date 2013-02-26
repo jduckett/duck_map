@@ -283,12 +283,12 @@ names.</p>
       <pre class="lines">
 
 
-34
-35
-36</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blank_route_name'>blank_route_name</span>
   <span class='ivar'>@blank_route_name</span>
@@ -345,12 +345,12 @@ names.</p>
       <pre class="lines">
 
 
-39
-40
-41</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blank_route_name?'>blank_route_name?</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blank_route_name'>blank_route_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_blank_route_name'>blank_route_name</span>
@@ -404,6 +404,13 @@ names.</p>
       <pre class="lines">
 
 
+46
+47
+48
+49
+50
+51
+52
 53
 54
 55
@@ -491,10 +498,22 @@ names.</p>
 137
 138
 139
-140</pre>
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_route?'>include_route?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -536,19 +555,35 @@ names.</p>
 
       <span class='kw'>end</span>
 
-      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_action_name'>action_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:actions</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_action_name'>action_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:actions</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitExclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>exclude</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_verb_symbol'>verb_symbol</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:verbs</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitExclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>exclude</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:controllers</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitExclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>exclude</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:exclude</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:names</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitExclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>exclude</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_action_name'>action_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:include</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:actions</span><span class='rbracket'>]</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitInclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>include</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
-      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_verb_symbol'>verb_symbol</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:verbs</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_verb_symbol'>verb_symbol</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:include</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:verbs</span><span class='rbracket'>]</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitInclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>include</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
-      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:controllers</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_controller_name'>controller_name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:include</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:controllers</span><span class='rbracket'>]</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitInclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>include</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
-      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:names</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_current_filter'>current_filter</span><span class='lbracket'>[</span><span class='symbol'>:include</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:names</span><span class='rbracket'>]</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ExplicitInclude</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>include</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
@@ -567,6 +602,9 @@ names.</p>
     <span class='kw'>rescue</span> <span class='const'>DuckmapInclude</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
       <span class='const'>DuckMap</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='embexpr_beg'>#{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Duckmap Include</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_rjust'>rjust</span><span class='lparen'>(</span><span class='int'>30</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'> -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='rbrace'>}</span><span class='tstring_end'>)</span></span>
       <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+    <span class='kw'>rescue</span> <span class='const'>ExplicitExclude</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='const'>DuckMap</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='embexpr_beg'>#{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Explicit Exclude</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_rjust'>rjust</span><span class='lparen'>(</span><span class='int'>30</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'> -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='rbrace'>}</span><span class='tstring_end'>)</span></span>
 
     <span class='kw'>rescue</span> <span class='const'>ExplicitInclude</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
       <span class='const'>DuckMap</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='embexpr_beg'>#{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Explicit Include</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_rjust'>rjust</span><span class='lparen'>(</span><span class='int'>30</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'> -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='rbrace'>}</span><span class='tstring_end'>)</span></span>
@@ -676,18 +714,6 @@ argument, otherwise, false.</p>
       <pre class="lines">
 
 
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
 159
 160
 161
@@ -703,10 +729,22 @@ argument, otherwise, false.</p>
 171
 172
 173
-174</pre>
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_any?'>match_any?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
@@ -780,12 +818,12 @@ argument, otherwise, false.</p>
       <pre class="lines">
 
 
-46
-47
-48</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/route_filter.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span>
   <span class='kw'>return</span> <span class='ivar'>@sitemap_filters</span> <span class='op'>||=</span> <span class='const'>FilterStack</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -800,7 +838,7 @@ argument, otherwise, false.</p>
 </div>
 
     <div id="footer">
-  Generated on Sat Feb 23 11:14:14 2013 by
+  Generated on Mon Feb 25 20:46:08 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

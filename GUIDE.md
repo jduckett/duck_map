@@ -267,12 +267,12 @@ values back to the real :book_id and :id when the url is built.
 Filters give you the power to exclude named routes from a sitemap based on verbs, controller name, action name, and the name of the
 route (i.e. root_url).  For the most part, named routes represent controllers and models.  It is doubtful that you would want to include
 any URL in a sitemap that performs an HTTP POST, PUT, or DELETE operation.  Therefore, the default named route filters exclude all routes
-and have a verb of POST, PUT, or DELETE.  Also excluded are all named routes that have an action name of: :create, :update, or :destroy.
-Basically, this leaves all routes that have a HTTP verb of GET.  For routes that represent resources this would include the :edit, :index,
-:new and :show actions.  These default setting should cover just about general needs for generating a sitemap.  However, you can reset all
-of the filters to empty and include everything or exclude only what you need.  Also, named route filters are local to a sitemap block.
-Meaning, you can define default filters at the top of config/routes.rb and define addtional filters within as many sitemap blocks as you wish.
-When you define exclude filters within a block,  the current state of the exclude filters outside of the block is copied and used within the block.
+and have a verb of POST, PUT, or DELETE.  Also excluded are all named routes that have an action name of: :create, :destroy, :edit, :new, and :update.
+Basically, this leaves actions :index and :show.  These default setting should cover just about general needs for generating a sitemap.
+However, you can reset all of the filters to empty and include everything or exclude only what you need.  Also, named route filters are
+local to a sitemap block.  Meaning, you can define default filters at the top of config/routes.rb and define addtional filters within as many sitemap
+blocks as you wish.  When you define exclude filters within a block,  the current state of the exclude filters outside of the block is copied and
+used within the block.
 
 <span class="note">**Note:** Filters ARE NOT applied DURING the execution of a block.  Filters are applied to the list of routes that are generated
 AFTER the block executes.</span>
