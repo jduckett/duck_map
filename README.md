@@ -16,7 +16,7 @@
 
 ## Synopsis
 
-Duck Map is a Rails 3.x compliant gem providing support for dynamically generating sitemaps and meta tags in HTML page headers.
+Duck Map is a Rails 4.x compliant gem providing support for dynamically generating sitemaps and meta tags in HTML page headers.
 
 ## Full Guide
 
