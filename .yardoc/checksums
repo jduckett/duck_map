@@ -9,7 +9,7 @@ lib/duck_map/config.rb 150f2733599646516db165e8c710d782da0be4a3
 lib/duck_map/mapper.rb ded1e772db853a6bc2663ed83c7d6605099a36ff
 lib/duck_map/version.rb d3a3be39f46e968eef334b7dca03ec131625351c
 lib/duck_map/last_mod.rb b1184060e768acd584e4d94367cf2c5881813c19
-lib/duck_map/route_set.rb df579696af1e932f0e47ac211c01c688178d7c8c
+lib/duck_map/route_set.rb 4d3d68c4cea10a70fac429c81a246cbfc81903c3
 lib/duck_map/attributes.rb a143d53057d35137bfedf69fda48390399ddcfbe
 lib/duck_map/filter_stack.rb e7c9180a8fc6b82f49c3d4d0aca53ffc8e31c7cf
 lib/duck_map/array_helper.rb e017733028ac21ff4cfcf7949eb4a5dd8ef6988a
