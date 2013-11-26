@@ -5,10 +5,10 @@ class NamespacesTest < ActiveSupport::TestCase
   ##################################################################################
   test "full test" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -67,14 +67,14 @@ class NamespacesTest < ActiveSupport::TestCase
     sitemaps.each do |sitemap|
 
       sitemap_route = Rails.application.routes.find_sitemap_route(sitemap.first)
-      assert sitemap_route.kind_of?(Journey::Route)
+      assert sitemap_route.kind_of?(ActionDispatch::Journey::Route)
 
       sitemap_routes = Rails.application.routes.sitemap_routes(sitemap_route)
 
       assert sitemap_routes.length == sitemap.last.length
 
       sitemap.last.each do |route_name|
-        assert sitemap_routes.find {|route| route.route_name.eql?(route_name)}.kind_of?(Journey::Route), "could not find route: #{route_name}"
+        assert sitemap_routes.find {|route| route.route_name.eql?(route_name)}.kind_of?(ActionDispatch::Journey::Route), "could not find route: #{route_name}"
       end
 
     end
@@ -84,10 +84,10 @@ class NamespacesTest < ActiveSupport::TestCase
   ##################################################################################
   test "namespaced route with a block" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -101,18 +101,18 @@ class NamespacesTest < ActiveSupport::TestCase
 
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
 
   end
 
   ##################################################################################
   test "named namespaced route without a block" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -124,19 +124,19 @@ class NamespacesTest < ActiveSupport::TestCase
 
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert !Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("/products/my_sitemap.xml").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert !Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/products/my_sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
 
   end
 
   ##################################################################################
   test "named namespaced route with a block" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -150,9 +150,9 @@ class NamespacesTest < ActiveSupport::TestCase
 
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert !Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("/products/my_sitemap.xml").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert !Rails.application.routes.find_sitemap_route("/products/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/products/my_sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
 
   end
 

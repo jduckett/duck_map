@@ -26,14 +26,15 @@ module DuckMap
       sitemap_raw_route_name = "#{name}_sitemap"
 
       # create a route for the sitemap using the name that was passed to the sitemap method inside config/routes.
-      match %(/#{name}.:format), controller: config[:controller], action: name, as: sitemap_raw_route_name
+      match %(/#{name}.:format), controller: config[:controller], action: name, via: [:get], as: sitemap_raw_route_name
 
       # the current Rails implementation keeps the routes in an array.  Also, it does nothing to prevent duplicate routes from being added.
       # at the time of development, the route is always at the end of the list, so, it is pretty safe to assume
       # the last route in the list is the sitemap route we just added.
-      
+
       # last_route_name is used after we check to see if we just added a duplicate route.
-      last_route_name = @set.routes.last.route_name
+      #last_route_name = @set.routes.last.route_name
+      last_route_name = @set.routes.last.name
 
       # identify the route as a "sitemap" route and build it's full name.
       @set.routes.last.is_sitemap = true

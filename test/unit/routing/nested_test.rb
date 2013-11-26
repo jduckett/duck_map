@@ -7,10 +7,10 @@ class NestedTest < ActiveSupport::TestCase
   # actual route tests will be in the handlers.
   test "full test" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -73,14 +73,15 @@ class NestedTest < ActiveSupport::TestCase
     sitemaps.each do |sitemap|
 
       sitemap_route = Rails.application.routes.find_sitemap_route(sitemap.first)
-      assert sitemap_route.kind_of?(Journey::Route)
+
+      assert sitemap_route.kind_of?(ActionDispatch::Journey::Route)
 
       sitemap_routes = Rails.application.routes.sitemap_routes(sitemap_route)
 
       assert sitemap_routes.length == sitemap.last.length
 
       sitemap.last.each do |route_name|
-        assert sitemap_routes.find {|route| route.route_name.eql?(route_name)}.kind_of?(Journey::Route), "could not find route: #{route_name}"
+        assert sitemap_routes.find {|route| route.route_name.eql?(route_name)}.kind_of?(ActionDispatch::Journey::Route), "could not find route: #{route_name}"
       end
 
     end

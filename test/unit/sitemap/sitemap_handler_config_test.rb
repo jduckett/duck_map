@@ -6,7 +6,7 @@ class SitemapHandlerConfigTest < ActiveSupport::TestCase
   test "should set single attribute on :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_handler :default, action_name: :my_index
     end
 
@@ -20,7 +20,7 @@ class SitemapHandlerConfigTest < ActiveSupport::TestCase
   test "should set single attribute on all :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_handler action_name: :my_index
     end
 
@@ -34,7 +34,7 @@ class SitemapHandlerConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_handler :default, action_name: :my_index, first_model: true
     end
 
@@ -52,7 +52,7 @@ class SitemapHandlerConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on all :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_handler action_name: :my_index, first_model: true
     end
 

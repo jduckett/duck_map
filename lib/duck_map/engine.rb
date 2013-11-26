@@ -1,5 +1,3 @@
-require 'journey'
-
 module DuckMap
   extend ActiveSupport::Autoload
 
@@ -33,7 +31,7 @@ module DuckMap
 
   end
 
-  class DuckMapEngine < Rails::Engine
+  class Engine < Rails::Engine
 
 #     # this is so I can develop the gem
 #     # run dev.com, make changes to files in lib/duck_captcha, refresh browser.
@@ -49,7 +47,7 @@ module DuckMap
                                 seo: "%a, %d %b %Y %H:%M:%S %Z")
     end
 
-    Journey::Route.send :include, Route
+    ActionDispatch::Journey::Route.send :include, Route
 
     ActionDispatch::Routing::RouteSet.send :include, RouteSet
     ActionDispatch::Routing::RouteSet.send :include, RouteFilter
@@ -64,7 +62,7 @@ module DuckMap
       ActiveRecord::Base.send :include, SitemapObject
     end
 
-    ActiveSupport.on_load(:action_controller) do
+    ActiveSupport.on_load(:after_initialize) do
       ActionController::Base.send :include, InheritableClassAttributes
       ActionController::Base.send :include, Attributes
       ActionController::Base.send :include, ControllerHelpers

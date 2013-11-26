@@ -8,7 +8,7 @@ class RouteOwnerTest < ActiveSupport::TestCase
     Rails.application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       #sitemap do
       #end

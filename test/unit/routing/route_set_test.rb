@@ -5,9 +5,9 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "should NOT find sitemap route" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
     end
 
     assert Rails.application.routes.find_sitemap_route("/sitemap.xml").nil?
@@ -18,169 +18,169 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "SHOULD find sitemap route" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
   end
 
   ##################################################################################
   test "SHOULD find sitemap route using default block" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap do
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
   end
 
   ##################################################################################
   test "SHOULD find sitemap route using named block :sitemap (default)" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap :sitemap do
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
   end
 
   ##################################################################################
   test "SHOULD find sitemap route using named block :duck" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap :duck do
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/duck.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:duck).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:duck_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("duck").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("duck_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/duck.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:duck).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:duck_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("duck").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("duck_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route).blank?
-    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(Journey::Route).blank?
-    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(Journey::Route).blank?
-    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(Journey::Route).blank?
-    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(Journey::Route).blank?
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route).blank?
+    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(ActionDispatch::Journey::Route).blank?
+    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route).blank?
+    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(ActionDispatch::Journey::Route).blank?
+    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route).blank?
   end
 
   ##################################################################################
   test "SHOULD find namespaced sitemap route without" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       namespace :books do
         sitemap
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
   end
 
   ##################################################################################
   test "SHOULD find namespaced sitemap route using default block" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       namespace :books do
         sitemap do
         end
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
   end
 
   ##################################################################################
   test "SHOULD find namespaced sitemap route using named block :sitemap (default)" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       namespace :books do
         sitemap :sitemap do
         end
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
   end
 
   ##################################################################################
   test "SHOULD find namespaced sitemap route using named block :duck" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       namespace :books do
         sitemap :duck do
         end
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/books/duck.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_duck).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_duck_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_duck").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_duck_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/duck.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_duck).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_duck_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_duck").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_duck_sitemap").kind_of?(ActionDispatch::Journey::Route)
   end
 
   ##################################################################################
   test "SHOULD find combination deeply namespaced sitemap routes" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap do
       end
@@ -206,50 +206,50 @@ class RouteSetTest < ActiveSupport::TestCase
       end
     end
 
-    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/sitemap.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:sitemap_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("sitemap_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/books/duck.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_duck).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_duck_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_duck").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_duck_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/duck.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_duck).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_duck_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_duck").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_duck_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/books/goose.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_goose).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_goose_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_goose").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_goose_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/goose.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_goose).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_goose_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_goose").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_goose_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/books/trucks/duck.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_duck).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_duck_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_duck").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_duck_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/trucks/duck.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_duck).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_duck_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_duck").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_duck_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/books/trucks/cat.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_cat).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_cat_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_cat").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_cat_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/trucks/cat.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_cat).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_cat_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_cat").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_cat_sitemap").kind_of?(ActionDispatch::Journey::Route)
 
-    assert Rails.application.routes.find_sitemap_route("/books/trucks/cars/dog.xml").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_cars_dog).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route(:books_trucks_cars_dog_sitemap).kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_cars_dog").kind_of?(Journey::Route)
-    assert Rails.application.routes.find_sitemap_route("books_trucks_cars_dog_sitemap").kind_of?(Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("/books/trucks/cars/dog.xml").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_cars_dog).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route(:books_trucks_cars_dog_sitemap).kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_cars_dog").kind_of?(ActionDispatch::Journey::Route)
+    assert Rails.application.routes.find_sitemap_route("books_trucks_cars_dog_sitemap").kind_of?(ActionDispatch::Journey::Route)
   end
 
   ##################################################################################
   test "sitemap SHOULD contain one route" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -268,10 +268,10 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "sitemap with block SHOULD contain one route" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -290,10 +290,10 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "sitemap SHOULD contain three routes" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap
 
@@ -316,10 +316,10 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "sitemap with block SHOULD contain three routes" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       sitemap do
 
@@ -344,10 +344,10 @@ class RouteSetTest < ActiveSupport::TestCase
   ##################################################################################
   test "namespaced sitemap SHOULD contain three route" do
 
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
 
       namespace :duck do
         sitemap do

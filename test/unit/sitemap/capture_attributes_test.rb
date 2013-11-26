@@ -189,7 +189,7 @@ class CaptureAttributesTest < ActiveSupport::TestCase
 
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       title "my title"
       keywords "this that and the other"
       description "moe, larry the cheese..."
@@ -222,7 +222,7 @@ class CaptureAttributesTest < ActiveSupport::TestCase
 
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       title "my title"
       keywords "this that and the other"
       description "moe, larry the cheese..."
@@ -258,7 +258,7 @@ class CaptureAttributesTest < ActiveSupport::TestCase
 
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       title "my title"
       keywords "this that and the other"
       description "moe, larry the cheese..."
@@ -361,7 +361,7 @@ class CaptureAttributesTest < ActiveSupport::TestCase
 
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       title "my title"
       keywords "this that and the other"
       description "moe, larry the cheese..."

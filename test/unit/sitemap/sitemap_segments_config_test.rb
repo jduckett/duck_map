@@ -6,7 +6,7 @@ class SitemapSegmentsConfigTest < ActiveSupport::TestCase
   test "should set single attribute on :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_segments :default, id: :my_id
     end
 
@@ -20,7 +20,7 @@ class SitemapSegmentsConfigTest < ActiveSupport::TestCase
   test "should set single attribute on all :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_segments id: :my_id
     end
 
@@ -34,7 +34,7 @@ class SitemapSegmentsConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_segments :default, id: :my_id, title: :my_title
     end
 
@@ -49,7 +49,7 @@ class SitemapSegmentsConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on all :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       sitemap_segments id: :my_id, title: :my_title
     end
 

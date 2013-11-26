@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SitemapIndexGeneric < TablelessModel
-  attr_accessible :id, :canonical, :canonical_host, :canonical_port, :changefreq, :description, :keywords, :priority, :title, :url_format, :url_limit, :updated_at
+  #attr_accessible :id, :canonical, :canonical_host, :canonical_port, :changefreq, :description, :keywords, :priority, :title, :url_format, :url_limit, :updated_at
 
   column :id, :integer
 
@@ -38,10 +38,10 @@ class SitemapIndexTest < ActiveSupport::TestCase
 
     # leave this stuff here before the class definition or you will be sorry...
     DuckMap::Config.reset
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       resources :sitemap_index_01_tests
     end
 
@@ -88,10 +88,10 @@ class SitemapIndexTest < ActiveSupport::TestCase
 
     # leave this stuff here before the class definition or you will be sorry...
     DuckMap::Config.reset
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       resources :sitemap_index_02_tests
     end
 
@@ -142,10 +142,10 @@ class SitemapIndexTest < ActiveSupport::TestCase
 
     # leave this stuff here before the class definition or you will be sorry...
     DuckMap::Config.reset
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       resources :sitemap_index_03_tests
     end
 
@@ -215,10 +215,10 @@ class SitemapIndexTest < ActiveSupport::TestCase
 
     # leave this stuff here before the class definition or you will be sorry...
     DuckMap::Config.reset
-    DevCom::Application.routes.routes.clear
+    Dummy::Application.routes.routes.clear
     Rails.application.routes.sitemap_filters.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       resources :sitemap_index_04_tests
     end
 

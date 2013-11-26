@@ -25,7 +25,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.title == "Untitled"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       title "My App"
     end
 
@@ -49,7 +49,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.keywords.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       keywords "Rails, Ruby"
     end
 
@@ -73,7 +73,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.description.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       description "This is my app"
     end
 
@@ -100,7 +100,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.lastmod.kind_of?(Time)
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       lastmod nil
     end
 
@@ -128,7 +128,7 @@ class ConfigTest < ActiveSupport::TestCase
     DuckMap::Config.lastmod = nil
     assert DuckMap::Config.lastmod.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       lastmod Time.now
     end
 
@@ -146,7 +146,7 @@ class ConfigTest < ActiveSupport::TestCase
     DuckMap::Config.lastmod = nil
     assert DuckMap::Config.lastmod.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       lastmod "10/12/2012 04:00:00"
     end
 
@@ -171,7 +171,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.changefreq == "monthly"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       changefreq "yearly"
     end
 
@@ -195,7 +195,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.priority == "0.5"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       priority "0.4"
     end
 
@@ -210,7 +210,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.priority == "0.5"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       priority 0.2
     end
 
@@ -234,7 +234,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.canonical.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       canonical "http://localhost/"
     end
 
@@ -267,7 +267,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.canonical_host.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       canonical_host "example.com"
     end
 
@@ -282,7 +282,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.canonical_port.nil?
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       canonical_port 8080
     end
 
@@ -306,7 +306,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.url_format == "html"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       url_format "xml"
     end
 
@@ -321,7 +321,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.url_format == "html"
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       url_format nil
     end
 
@@ -345,7 +345,7 @@ class ConfigTest < ActiveSupport::TestCase
 
     assert DuckMap::Config.url_limit == 50000
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       url_limit 10000
     end
 

@@ -58,7 +58,6 @@ module DuckMap
         else
 
           candidates = self.routes.find_all {|route| !route.is_sitemap?}
-
           potential_owners = self.routes.find_all {|route| route.is_sitemap?}
           potential_owners.sort! { |a,b| b.namespace_prefix_underscores <=> a.namespace_prefix_underscores}
 
@@ -155,7 +154,7 @@ module DuckMap
     ##################################################################################
     def find_route_via_path(path, environment = {})
       method = (environment[:method] || "GET").to_s.upcase
-      path = Journey::Router::Utils.normalize_path(path) unless path =~ %r{://}
+      path = ActionDispatch::Journey::Router::Utils.normalize_path(path) unless path =~ %r{://}
 
       begin
         env = Rack::MockRequest.env_for(path, {:method => method})
@@ -167,13 +166,13 @@ module DuckMap
       @router.recognize(req) do |route, matches, params|
         params.each do |key, value|
           if value.is_a?(String)
-            value = value.dup.force_encoding(Encoding::BINARY) if value.encoding_aware?
+            value = value.dup.force_encoding(Encoding::BINARY)# if value.encoding_aware?
             params[key] = URI.parser.unescape(value)
           end
         end
 
         dispatcher = route.app
-        #while dispatcher.is_a?(Mapper::Constraints) && dispatcher.matches?(env) do
+
         while dispatcher.is_a?(ActionDispatch::Routing::Mapper::Constraints) && dispatcher.matches?(env) do
           dispatcher = dispatcher.app
         end
@@ -186,10 +185,6 @@ module DuckMap
 
       raise ActionController::RoutingError, "No route matches #{path.inspect}"
     end
-
-
-
-
 
   end
 

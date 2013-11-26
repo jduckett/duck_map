@@ -6,7 +6,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "acts_as_sitemap without key defaults to :all" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap title: :my_title
     end
 
@@ -46,7 +46,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set attribute to string instead of symbol" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap title: "my title"
     end
 
@@ -60,7 +60,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set attribute to nil" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap title: nil
     end
 
@@ -74,7 +74,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute to symbol" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, title: :my_title
     end
 
@@ -88,7 +88,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute to string" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, title: "my title"
     end
 
@@ -102,7 +102,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute to nil" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, title: nil
     end
 
@@ -116,7 +116,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute on :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, handler: {action_name: :my_index}
     end
 
@@ -130,7 +130,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute on all :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap handler: {action_name: :my_index}
     end
 
@@ -144,7 +144,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, handler: {action_name: :my_index, first_model: true}
     end
 
@@ -162,7 +162,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on all :handler" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap handler: {action_name: :my_index, first_model: true}
     end
 
@@ -180,7 +180,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute on :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, segments: {id: :my_id}
     end
 
@@ -194,7 +194,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set single attribute on all :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap segments: {id: :my_id}
     end
 
@@ -208,7 +208,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap :default, segments: {id: :my_id, title: :my_title}
     end
 
@@ -223,7 +223,7 @@ class ActsAsSitemapConfigTest < ActiveSupport::TestCase
   test "should set multiple attributes on all :segments" do
     DuckMap::Config.reset
 
-    DevCom::Application.routes.draw do
+    Dummy::Application.routes.draw do
       acts_as_sitemap segments: {id: :my_id, title: :my_title}
     end
 
