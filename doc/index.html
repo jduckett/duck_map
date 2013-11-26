@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><p><a href="http://travis-ci.org/jduckett01/duck_map"><img src="https://secure.travis-ci.org/jduckett01/duck_map.png?branch=master" alt="Build Status"></a></p>
+
+<h1>Duck Map</h1>
+
+<p><strong>Homepage</strong>:       <a href="http://jeffduckett.com">http://jeffduckett.com</a></p>
+
+<p><strong>Git</strong>:            <a href="http://github.com/jduckett01/duck_map">http://github.com/jduckett01/duck_map</a></p>
+
+<p><strong>Documentation</strong>:  <a href="http://rubydoc.info/github/jduckett01/duck_map/frames">http://rubydoc.info/github/jduckett01/duck_map/frames</a></p>
+
+<p><strong>Author</strong>:       Jeff Duckett</p>
+
+<p><strong>Copyright</strong>:    2013</p>
+
+<p><strong>License</strong>:      MIT License</p>
+
+<h2>Synopsis</h2>
+
+<p>Duck Map is a Rails 4.x compliant gem providing support for dynamically generating sitemaps and meta tags in HTML page headers.</p>
+
+<h2>Full Guide</h2>
+
+<p><span class="note">For an in depth discussion see: <a href="file.GUIDE.html" title="Full guide (GUIDE.md)">Full guide (GUIDE.md)</a></span></p>
+
+<h2>Feature List</h2>
+
+<ul>
+<li>Sitemaps are baked into the standard Rails Routing Code base and are defined directly in config/routes.rb.</li>
+<li>Default sitemap at the root of the application named: /sitemap.xml</li>
+<li>No code needed.  Default sitemap.xml content is based on standard Rails controller actions: edit, index, new and show.</li>
+<li>Designed to grab volitale elements such as last modified date directly from a model.</li>
+<li>Automagically finds the first model on a controller and uses model attributes in sitemap and page headers.</li>
+<li>Support for namespaces.</li>
+<li>Support for nested resources.</li>
+<li>Define as many sitemaps as you need.</li>
+<li>Ability to sychronize static last modified dates directly from the rails view files or a .git repository.</li>
+<li>Meta tags for HTML page headers such as title, last modified, canonical url, etc. that match data contained in sitemap.</li>
+<li>Generate static sitemap files with compression.</li>
+<li>Define global attributes and values and fine tune them down to the controller/model levels.</li>
+</ul>
+
+<h2>Quick Start</h2>
+
+<p>Follow these steps to create a Rails app with a sitemap.</p>
+
+<pre class="code ruby"><code class="ruby"># open a shell and navigate to a work directory.
+# create a Rails app
+rails new test.com --skip-bundle
+
+# add the following to your Rails app test.com/Gemfile
+gem &#39;duck_map&#39;
+
+# depending on your Rails version, you may have to add the following lines as well.
+gem &#39;execjs&#39;
+gem &#39;therubyracer&#39;
+
+# make sure you have all the gems, etc.
+bundle install
+
+# create a controller
+rails g controller home
+
+# create a route in config/routes.rb
+root :to =&gt; &#39;home#index&#39;
+
+# start the server
+rails s
+
+# view the sitemap
+http://localhost:3000/sitemap.xml
+
+# if you view the HTML source of: http://localhost:3000/sitemap.xml
+# you should see something similar to the following:
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;http://localhost:3000/&lt;/loc&gt;
+    &lt;lastmod&gt;2011-10-27T13:02:15+00:00&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.5&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+
+<h2>Demo applications</h2>
+
+<p>You can find articles and demo apps at: <a href="http://jeffduckett.com/blogs.html">http://jeffduckett.com/blogs.html</a></p>
+
+<h2>Why use the name Duck Map?</h2>
+
+<p>Having &quot;Duck&quot; built into the name?  This stems from a habit I picked up years ago back in the days when I was doing DBase and Clipper programming for DOS.
+I picked up the idea from one of my favorite authors at the time (Rick Spence - or at least I think it was Rick).  Anyway, the idea is to basically sign
+your code by incorporating your initials into library names or method calls.  That way, you know the origin of a piece of code at a glance.  The downside
+is that you definitely own it and can&#39;t blame it on that guy that keeps beating you to the good doughnuts.  I hate that guy!!
+The second reason is that there was a pretty good chance I wouldn&#39;t run into naming conflicts.</p>
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2013 Jeff Duckett. See license for details.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Nov 26 15:35:20 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

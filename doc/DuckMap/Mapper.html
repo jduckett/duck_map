@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: DuckMap::Mapper
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (M)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../DuckMap.html" title="DuckMap (module)">DuckMap</a></span></span>
+     &raquo; 
+    <span class="title">Mapper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: DuckMap::Mapper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1">ActiveSupport::Concern</dd>
+      
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/duck_map/mapper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Add functionality to ActionDispatch::Routing::Mapper  The purpose of this
+module is to provide methods that can be used within config/routes.rb to
+define sitemaps and configure sitemap options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run_filter-instance_method" title="#run_filter (instance method)">- (Object) <strong>run_filter</strong>(sitemap_route_name = nil, start_point = 0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sitemap-instance_method" title="#sitemap (instance method)">- (Nil) <strong>sitemap</strong>(name = :sitemap, options = {}, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Defines a sitemap for a Rails app.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="run_filter-instance_method">
+  
+    - (<tt>Object</tt>) <strong>run_filter</strong>(sitemap_route_name = nil, start_point = 0) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run_filter'>run_filter</span><span class='lparen'>(</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_start_point'>start_point</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_total'>total</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='comment'># assign the sitemap_route_name to the sitemap_route_name attribute of every route that has just been added during the execution of the above block.
+</span>  <span class='id identifier rubyid_start_point'>start_point</span><span class='period'>.</span><span class='id identifier rubyid_upto'>upto</span><span class='lparen'>(</span><span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+
+    <span class='comment'># this is where the actual filtering of routes occurs and is based on the current sitemap filter settings.
+</span>    <span class='comment'># if the route passes the criteria, then, it is &quot;marked&quot; as part of the sitemap.
+</span>    <span class='comment'># no need to evaluate it every time a sitemap is requested.  evaluate it now and mark it.
+</span>    <span class='kw'>unless</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
+      <span class='kw'>if</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
+        <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span> <span class='op'>=</span> <span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span>
+        <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_available'>available</span> <span class='op'>=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_include_route?'>include_route?</span><span class='lparen'>(</span><span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_total'>total</span> <span class='op'>+=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_available?'>is_available?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_total'>total</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="sitemap-instance_method">
+  
+    - (<tt>Nil</tt>) <strong>sitemap</strong>(name = :sitemap, options = {}, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Defines a sitemap for a Rails app.</p>
+
+<p>You can find a few examples and apps at:</p>
+<ul><li>
+<p>(<a
+href="http://www.jeffduckett.com/blog/11/defining-rails-3-x-sitemaps-using-duckmap.html">www.jeffduckett.com/blog/11/defining-rails-3-x-sitemaps-using-duckmap.html</a>)</p>
+</li><li>
+<p>(<a
+href="http://www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html">www.jeffduckett.com/blog/12/multiple-sitemap-definitions.html</a>)</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/duck_map/mapper.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sitemap'>sitemap</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='symbol'>:sitemap</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='symbol'>:sitemap</span>
+  <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='label'>controller:</span> <span class='symbol'>:sitemap</span><span class='comma'>,</span> <span class='label'>url_limit:</span> <span class='kw'>nil</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_sitemap_raw_route_name'>sitemap_raw_route_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_sitemap</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># create a route for the sitemap using the name that was passed to the sitemap method inside config/routes.
+</span>  <span class='id identifier rubyid_match'>match</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.:format</span><span class='tstring_end'>)</span></span><span class='comma'>,</span> <span class='label'>controller:</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:controller</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>action:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>via:</span> <span class='lbracket'>[</span><span class='symbol'>:get</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>as:</span> <span class='id identifier rubyid_sitemap_raw_route_name'>sitemap_raw_route_name</span>
+
+  <span class='comment'># the current Rails implementation keeps the routes in an array.  Also, it does nothing to prevent duplicate routes from being added.
+</span>  <span class='comment'># at the time of development, the route is always at the end of the list, so, it is pretty safe to assume
+</span>  <span class='comment'># the last route in the list is the sitemap route we just added.
+</span>
+  <span class='comment'># last_route_name is used after we check to see if we just added a duplicate route.
+</span>  <span class='comment'>#last_route_name = @set.routes.last.route_name
+</span>  <span class='id identifier rubyid_last_route_name'>last_route_name</span> <span class='op'>=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+
+  <span class='comment'># identify the route as a &quot;sitemap&quot; route and build it&#39;s full name.
+</span>  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_sitemap'>is_sitemap</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_url_limit'>url_limit</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:url_limit</span><span class='rbracket'>]</span>
+  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span> <span class='op'>=</span> <span class='id identifier rubyid_last_route_name'>last_route_name</span>
+  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_raw_route_name'>sitemap_raw_route_name</span> <span class='op'>=</span> <span class='id identifier rubyid_sitemap_raw_route_name'>sitemap_raw_route_name</span>
+
+  <span class='comment'># this is how I am faking to always point to the SitemapController
+</span>  <span class='comment'># regardless of namespace
+</span>  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lbracket'>[</span><span class='symbol'>:controller</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sitemap</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># determine if we added a duplicate route.
+</span>  <span class='comment'># The gem defines a default sitemap in config/routes.rb (inside the gem, not the app).
+</span>  <span class='comment'># So, it is very likely that most apps will be creating duplicates since most of the code is geared towards
+</span>  <span class='comment'># automagically configuring as much as possible.
+</span>  <span class='id identifier rubyid_sitemap_routes'>sitemap_routes</span> <span class='op'>=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_route'>route</span><span class='op'>|</span> <span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_is_sitemap?'>is_sitemap?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_last_route_name'>last_route_name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  
+  <span class='comment'># if there are more than one routes with the same name, then, we must have added a duplicate.  so, remove it.
+</span>  <span class='comment'>#@set.routes.pop if sitemap_routes.length &gt; 1
+</span>  <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span> <span class='kw'>if</span> <span class='id identifier rubyid_sitemap_routes'>sitemap_routes</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+
+  <span class='comment'># now, find the route again.
+</span>  <span class='id identifier rubyid_sitemap_route'>sitemap_route</span> <span class='op'>=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_route'>route</span><span class='op'>|</span> <span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_is_sitemap?'>is_sitemap?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_last_route_name'>last_route_name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='comment'># once a sitemap route has been flagged as being defined with a block, then, you should never set it back to false.
+</span>  <span class='comment'># one of the features is to be able to encapsulate a set of routes within a sitemap as many times as you need.
+</span>  <span class='comment'># meaning, you might want to wrap five routes at the top of the file, three in the middle, and two at the bottom and
+</span>  <span class='comment'># have all of them included in the default sitemap.
+</span>  <span class='comment'># Since all routes within a sitemap block will be marked with the same name, 
+</span>  <span class='comment'># I am not keeping track of sitemaps being defined with or without a block, so, all I need to know is about one of them.
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_sitemap_route'>sitemap_route</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_with_block?'>sitemap_with_block?</span>
+    <span class='id identifier rubyid_sitemap_route'>sitemap_route</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_with_block'>sitemap_with_block</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># DuckMap::SitemapControllerHelpers is a module that is included in SitemapBaseController and contains
+</span>  <span class='comment'># methods such as sitemap_build, etc.  Define a method to handle the sitemap on DuckMap::SitemapControllerHelpers
+</span>  <span class='comment'># so that method is visible to the default sitemap controller as well as any custom controllers that inherit from it.
+</span>  <span class='comment'># originally, I was simply defining the method directly on SitemapBaseController, however, it was causing problems
+</span>  <span class='comment'># during the development cycle of edit and refresh.  Defining methods here seemed to cure that problem.
+</span>  <span class='comment'># for example, the default sitemap: /sitemap.xml will define a method named: sitemap
+</span>  <span class='comment'># on the DuckMap::SitemapControllerHelpers module.
+</span>  <span class='kw'>unless</span> <span class='const'>DuckMap</span><span class='op'>::</span><span class='const'>SitemapControllerHelpers</span><span class='period'>.</span><span class='id identifier rubyid_public_method_defined?'>public_method_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='const'>DuckMap</span><span class='op'>::</span><span class='const'>SitemapControllerHelpers</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span> <span class='symbol'>:define_method</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>do</span>
+
+      <span class='kw'>if</span> <span class='const'>DuckMap</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:sitemap_content</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='symbol'>:xml</span><span class='rparen'>)</span>
+
+        <span class='id identifier rubyid_sitemap_build'>sitemap_build</span>
+
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+        <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_xml'>xml</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='rbrace'>}</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># determine if the sitemap definition included a block.
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+    <span class='comment'># the starting point would be after the current set of routes and would be length plus one.
+</span>    <span class='comment'># however, the starting point index is the length of routes, since arrays are zero based.
+</span>    <span class='id identifier rubyid_start_point'>start_point</span> <span class='op'>=</span> <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+
+    <span class='comment'># push a copy of the current filter settings onto an array.
+</span>    <span class='comment'># this will allow you to specify criteria setting within a sitemap definition without affecting
+</span>    <span class='comment'># the default settings after the block is finished executing.
+</span>    <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span>
+
+    <span class='comment'># yield to the block.  all standard route code should execute just fine and define namespaces, resource, matches, etc.
+</span>    <span class='kw'>yield</span>
+
+    <span class='id identifier rubyid_total'>total</span> <span class='op'>=</span> <span class='id identifier rubyid_run_filter'>run_filter</span><span class='lparen'>(</span><span class='id identifier rubyid_sitemap_route'>sitemap_route</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span><span class='comma'>,</span> <span class='id identifier rubyid_start_point'>start_point</span><span class='rparen'>)</span>
+
+    <span class='comment'># knock the current filter setting off of the stack
+</span>    <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_filters'>sitemap_filters</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
+
+    <span class='const'>DuckMap</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>total routes filtered: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='id identifier rubyid_start_point'>start_point</span><span class='embexpr_end'>}</span><span class='tstring_content'>  included? </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_total'>total</span><span class='embexpr_end'>}</span><span class='tstring_end'>)</span></span>
+
+    <span class='ivar'>@set</span><span class='period'>.</span><span class='id identifier rubyid_routes'>routes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_route'>route</span><span class='op'>|</span>
+      <span class='const'>DuckMap</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>  Route name: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>)</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_route'>route</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_sitemap_route'>sitemap_route</span><span class='period'>.</span><span class='id identifier rubyid_sitemap_route_name'>sitemap_route_name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Nov 26 15:35:20 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
