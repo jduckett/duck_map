@@ -62,7 +62,7 @@ module DuckMap
       ActiveRecord::Base.send :include, SitemapObject
     end
 
-    ActiveSupport.on_load(:after_initialize) do
+    ActiveSupport.on_load(:before_initialize) do
       ActionController::Base.send :include, InheritableClassAttributes
       ActionController::Base.send :include, Attributes
       ActionController::Base.send :include, ControllerHelpers

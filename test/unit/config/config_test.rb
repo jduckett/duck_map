@@ -382,6 +382,31 @@ class ConfigTest < ActiveSupport::TestCase
     assert !DuckMap::Config.sitemap_attributes_hash[:index][:handler][:first_model]
   end
 
+  ##################################################################################
+  test "SHOULD allow adding multiple sitemap statements regardless of scope" do
+    DuckMap::Config.reset
+    Rails.application.routes.routes.clear
+    Rails.application.routes.sitemap_filters.reset
+
+    Dummy::Application.routes.draw do
+
+      sitemap
+      sitemap
+      sitemap do
+
+      end
+
+      namespace :nothing do
+        sitemap
+        sitemap
+        sitemap do
+        end
+      end
+
+    end
+
+  end
+
 end
 
 
