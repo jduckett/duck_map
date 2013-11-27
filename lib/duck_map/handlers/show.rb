@@ -117,14 +117,13 @@ module DuckMap
 
           elsif !options[:handler][:model].blank?
 
-            data_rows = options[:handler][:model].send(:all)
+            data_rows = options[:handler][:model].send(:all).to_a
 
           elsif !options[:model].blank?
 
             # this model is not set by developer
             # it is set in code in sitemap_build using get_model_class
-            data_rows = options[:model].send(:all)
-
+            data_rows = options[:model].send(:all).to_a
           end
 
           # data_rows may have changed from an Array to a model object.

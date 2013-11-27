@@ -82,7 +82,7 @@ module DuckMap
 
         elsif !options[:handler][:model].blank?
 
-          data_rows = options[:handler][:model].send(:all)
+          data_rows = options[:handler][:model].send(:all).to_a
 
         else
 
