@@ -12,3 +12,5 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+gem "bson_ext"
+gem "mongoid", "4.0.0.alpha2"

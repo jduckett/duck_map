@@ -128,7 +128,8 @@ module DuckMap
     def find_first_model_object
       model_object = self.find_model_object
 
-      if model_object.kind_of?(Array) && model_object.first.kind_of?(ActiveRecord::Base)
+      if model_object.kind_of?(Array) &&
+          (model_object.first.kind_of?(ActiveRecord::Base) || model_object.first.kind_of?(Mongoid::Document))
         model_object = model_object.first
       end
 
@@ -153,11 +154,11 @@ module DuckMap
       list.each do |obj_sym|
         obj = self.instance_variable_get(obj_sym)
         if obj
-          if obj.kind_of?(ActiveRecord::Base)
+          if obj.kind_of?(ActiveRecord::Base) || obj.kind_of?(Mongoid::Document)
             model_object = obj
             break
           elsif obj.kind_of?(Array) &&
-                obj.first.kind_of?(ActiveRecord::Base) &&
+                (obj.first.kind_of?(ActiveRecord::Base) || obj.first.kind_of?(Mongoid::Document)) &&
                 candidate.blank?
             candidate = obj
           end
