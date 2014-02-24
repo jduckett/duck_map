@@ -477,6 +477,13 @@ It is up to you to decide when to run the synchronization process.  If you are u
 synchronization process, then, commit again.  It may be an option to run the synchronization process during some type of central deployment procedure or even run
 it on the production server.
 
+## Mongoid Support
+Recently, I added support for mongoid.  All that should be needed is to require "duck_map_mongoid" when including
+the duck_map gem in your app.
+
+    # add duck_map with mongoid support
+    gem "duck_map", required: "duck_map_mongoid"
+
 ## Demo applications
 You can find articles and demo apps at: http://jeffduckett.com/blogs.html
 

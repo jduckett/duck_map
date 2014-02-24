@@ -35,6 +35,7 @@ Duck Map is a Rails 4.x compliant gem providing support for dynamically generati
 - Meta tags for HTML page headers such as title, last modified, canonical url, etc. that match data contained in sitemap.
 - Generate static sitemap files with compression.
 - Define global attributes and values and fine tune them down to the controller/model levels.
+- Support for mongoid
 
 ## Quick Start
 

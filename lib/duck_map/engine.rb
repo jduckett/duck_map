@@ -61,10 +61,6 @@ module DuckMap
       ActiveRecord::Base.send :include, Attributes
       ActiveRecord::Base.send :include, SitemapObject
 
-      Mongoid::Document.send :include, InheritableClassAttributes
-      Mongoid::Document.send :include, Attributes
-      Mongoid::Document.send :include, SitemapObject
-
     end
 
     ActiveSupport.on_load(:before_initialize) do

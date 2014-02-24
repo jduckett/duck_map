@@ -14,7 +14,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
   #ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 #end
 
-require "duck_map"
+require "duck_map_mongoid"
 require "hash_model"
 require "tableless_model"
 require "lastmod_setup"

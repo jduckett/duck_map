@@ -600,6 +600,15 @@ then, it will compare all three values.  The value that is the latest date/time 
 synchronization process, then, commit again.  It may be an option to run the synchronization process during some type of central deployment procedure or even run
 it on the production server.</p>
 
+<h2>Mongoid Support</h2>
+
+<p>Recently, I added support for mongoid.  All that should be needed is to require &quot;duck_map_mongoid&quot; when including
+the duck_map gem in your app.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># add duck_map with mongoid support
+</span><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>duck_map</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>required:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>duck_map_mongoid</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
 <h2>Demo applications</h2>
 
 <p>You can find articles and demo apps at: <a href="http://jeffduckett.com/blogs.html">http://jeffduckett.com/blogs.html</a></p>
@@ -610,7 +619,7 @@ it on the production server.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Nov 26 16:13:20 2013 by
+  Generated on Mon Feb 24 13:45:22 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

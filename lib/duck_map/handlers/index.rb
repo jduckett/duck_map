@@ -101,7 +101,7 @@ module DuckMap
 
         # data_rows may have changed from an Array to a model object.
         # Make data_rows an Array if it has been switched to an model object.
-        if data_rows.kind_of?(ActiveRecord::Base) || data_rows.kind_of?(Mongoid::Document)
+        if ::DuckMap::Model::Supported.is_supported?(data_rows)
           data_rows = [data_rows]
         end
 
