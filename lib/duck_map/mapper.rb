@@ -24,11 +24,30 @@ module DuckMap
       config = {controller: :sitemap, url_limit: nil}.merge(options)
 
       sitemap_raw_route_name = "#{name}_sitemap"
+      sitemap_route_name = name_for_action(sitemap_raw_route_name, nil)
 
       begin
 
-        # create a route for the sitemap using the name that was passed to the sitemap method inside config/routes.
-        match %(/#{name}.:format), controller: config[:controller], action: name, via: [:get], as: sitemap_raw_route_name
+        unless @set.routes.find {|route| route.name.eql?(sitemap_route_name)}
+
+          # create a route for the sitemap using the name that was passed to the sitemap method inside config/routes.
+          match %(/#{name}.:format), controller: config[:controller], action: name, via: [:get], as: sitemap_raw_route_name
+
+          # if not found here, then, there must be a real problem.
+          # later, i will implement an exception, etc.
+          sitemap_route = @set.routes.find {|route| route.name.eql?(sitemap_route_name)}
+
+          # identify the route as a "sitemap" route and build it's full name.
+          sitemap_route.is_sitemap = true
+          sitemap_route.url_limit = config[:url_limit]
+          sitemap_route.sitemap_route_name = sitemap_route_name
+          sitemap_route.sitemap_raw_route_name = sitemap_raw_route_name
+
+          # this is how I am faking to always point to the SitemapController
+          # regardless of namespace
+          sitemap_route.defaults[:controller] = "sitemap"
+
+        end
 
       rescue ArgumentError => e
         unless e.message.include?("Invalid route name")
@@ -36,36 +55,10 @@ module DuckMap
         end
       end
 
-      # the current Rails implementation keeps the routes in an array.  Also, it does nothing to prevent duplicate routes from being added.
-      # at the time of development, the route is always at the end of the list, so, it is pretty safe to assume
-      # the last route in the list is the sitemap route we just added.
-
-      # last_route_name is used after we check to see if we just added a duplicate route.
-      #last_route_name = @set.routes.last.route_name
-      last_route_name = @set.routes.last.name
-
-      # identify the route as a "sitemap" route and build it's full name.
-      @set.routes.last.is_sitemap = true
-      @set.routes.last.url_limit = config[:url_limit]
-      @set.routes.last.sitemap_route_name = last_route_name
-      @set.routes.last.sitemap_raw_route_name = sitemap_raw_route_name
-
-      # this is how I am faking to always point to the SitemapController
-      # regardless of namespace
-      @set.routes.last.defaults[:controller] = "sitemap"
-
-      # determine if we added a duplicate route.
-      # The gem defines a default sitemap in config/routes.rb (inside the gem, not the app).
-      # So, it is very likely that most apps will be creating duplicates since most of the code is geared towards
-      # automagically configuring as much as possible.
-      sitemap_routes = @set.routes.find_all {|route| route.is_sitemap? && route.name.eql?(last_route_name) }
-      
-      # if there are more than one routes with the same name, then, we must have added a duplicate.  so, remove it.
-      #@set.routes.pop if sitemap_routes.length > 1
-      @set.routes.routes.pop if sitemap_routes.length > 1
-
-      # now, find the route again.
-      sitemap_route = @set.routes.find {|route| route.is_sitemap? && route.name.eql?(last_route_name) }
+      # now, find the route again, because, we need to set the following boolean and there might be several
+      # calls to sitemap without a block.  if we were to set this boolean in the code above when checking
+      # if the route already exists, then, the boolean may never be set.
+      sitemap_route = @set.routes.find {|route| route.is_sitemap? && route.name.eql?(sitemap_route_name) }
 
       # once a sitemap route has been flagged as being defined with a block, then, you should never set it back to false.
       # one of the features is to be able to encapsulate a set of routes within a sitemap as many times as you need.
