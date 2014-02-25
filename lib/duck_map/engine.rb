@@ -60,7 +60,9 @@ module DuckMap
       ActiveRecord::Base.send :include, InheritableClassAttributes
       ActiveRecord::Base.send :include, Attributes
       ActiveRecord::Base.send :include, SitemapObject
-
+      ActiveRecord::Relation.send :include, InheritableClassAttributes
+      ActiveRecord::Relation.send :include, Attributes
+      ActiveRecord::Relation.send :include, SitemapObject
     end
 
     ActiveSupport.on_load(:before_initialize) do
