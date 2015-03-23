@@ -1,12 +1,12 @@
-[![Build Status](https://secure.travis-ci.org/jduckett01/duck_map.png?branch=master)](http://travis-ci.org/jduckett01/duck_map)
+[![Build Status](https://secure.travis-ci.org/jduckett/duck_map.png?branch=master)](http://travis-ci.org/jduckett/duck_map)
 
 # Duck Map
 
 **Homepage**:       [http://jeffduckett.com](http://jeffduckett.com)
 
-**Git**:            [http://github.com/jduckett01/duck_map](http://github.com/jduckett01/duck_map)
+**Git**:            [http://github.com/jduckett/duck_map](http://github.com/jduckett/duck_map)
 
-**Documentation**:  [http://rubydoc.info/github/jduckett01/duck_map/frames](http://rubydoc.info/github/jduckett01/duck_map/frames)
+**Documentation**:  [http://rubydoc.info/github/jduckett/duck_map/frames](http://rubydoc.info/github/jduckett/duck_map/frames)
 
 **Author**:       Jeff Duckett
 
@@ -17,6 +17,9 @@
 ## Synopsis
 
 Duck Map is a Rails 4.x compliant gem providing support for dynamically generating sitemaps and meta tags in HTML page headers.
+
+# Support
+I am officially dropping support for this repo as I am moving away from Rails.  Anybody want it?
 
 ## Full Guide
 
